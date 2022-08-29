@@ -1,0 +1,859 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: inpxer 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-09 19:18+0300\n"
+"PO-Revision-Date: 2017-02-09 19:27+0300\n"
+"Last-Translator: Denis Shemanaev <denis.shemanaev@gmail.com>\n"
+"Language-Team: Denis Shemanaev <denis.shemanaev@gmail.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.11\n"
+
+msgid "accounting"
+msgstr "Accounting"
+
+msgid "adv_animal"
+msgstr "Nature & Animals"
+
+msgid "adv_geo"
+msgstr "Travel & Geography"
+
+msgid "adv_history"
+msgstr "Historical adventures"
+
+msgid "adv_indian"
+msgstr "Indians"
+
+msgid "adv_maritime"
+msgstr "Maritime Fiction"
+
+msgid "adv_western"
+msgstr "Western"
+
+msgid "adventure"
+msgstr "Misk Adventures"
+
+msgid "antique"
+msgstr "Other Antique"
+
+msgid "antique_ant"
+msgstr "Antique Literature"
+
+msgid "antique_east"
+msgstr "Antique East Literature"
+
+msgid "antique_european"
+msgstr "Antique European Literature"
+
+msgid "antique_myths"
+msgstr "Myths. Legends. Epos"
+
+msgid "antique_russian"
+msgstr "Antique Russian Literature"
+
+msgid "aphorisms"
+msgstr "Aphorisms"
+
+msgid "architecture_book"
+msgstr "Architecture"
+
+msgid "astrology"
+msgstr "Astrology"
+
+msgid "auto_regulations"
+msgstr "Auto regulations"
+
+msgid "banking"
+msgstr "Banking"
+
+msgid "child_adv"
+msgstr "Adventures for Kids"
+
+msgid "child_det"
+msgstr "Detective for Kids"
+
+msgid "child_education"
+msgstr "Education for Kids"
+
+msgid "child_folklore"
+msgstr "Child Folklore"
+
+msgid "child_prose"
+msgstr "Prose for Kids"
+
+msgid "child_sf"
+msgstr "Science Fiction for Kids"
+
+msgid "child_tale"
+msgstr "Fairy Tales"
+
+msgid "child_verse"
+msgstr "Verses for Kids"
+
+msgid "children"
+msgstr "For Kids: Misk"
+
+msgid "cine"
+msgstr "Cine"
+
+msgid "comedy"
+msgstr "Comedy"
+
+msgid "comp_db"
+msgstr "Databases"
+
+msgid "comp_dsp"
+msgstr "DSP"
+
+msgid "comp_hard"
+msgstr "Hardware"
+
+msgid "comp_osnet"
+msgstr "OS & Networking"
+
+msgid "comp_programming"
+msgstr "Programming"
+
+msgid "comp_soft"
+msgstr "Software"
+
+msgid "comp_www"
+msgstr "Internet"
+
+msgid "computers"
+msgstr "Computers: Misk"
+
+msgid "design"
+msgstr "Art, Design"
+
+msgid "det_action"
+msgstr "Action"
+
+msgid "det_classic"
+msgstr "Classical Detective"
+
+msgid "det_cozy"
+msgstr "Cozy Mysteries"
+
+msgid "det_crime"
+msgstr "Crime Detective"
+
+msgid "det_espionage"
+msgstr "Espionage Detective"
+
+msgid "det_hard"
+msgstr "Hard-boiled Detective"
+
+msgid "det_history"
+msgstr "Historical Detective"
+
+msgid "det_irony"
+msgstr "Ironical Detective"
+
+msgid "det_maniac"
+msgstr "Maniacs"
+
+msgid "det_police"
+msgstr "Police Stories"
+
+msgid "det_political"
+msgstr "Political Detective"
+
+msgid "detective"
+msgstr "Detective"
+
+msgid "dissident"
+msgstr "Anti-Soviet fiction"
+
+msgid "drama"
+msgstr "Drama"
+
+msgid "dramaturgy"
+msgstr "Dramaturgy"
+
+msgid "economics"
+msgstr "Economics"
+
+msgid "epic"
+msgstr "Epic"
+
+msgid "epic_poetry"
+msgstr "Epic Poetry"
+
+msgid "epistolary_fiction"
+msgstr "Epistolary"
+
+msgid "essay"
+msgstr "Essay"
+
+msgid "experimental_poetry"
+msgstr "Experimental Poetry"
+
+msgid "extravaganza"
+msgstr "Extravaganza"
+
+msgid "fable"
+msgstr "Fable"
+
+msgid "fairy_fantasy"
+msgstr "Fairy SF"
+
+msgid "fanfiction"
+msgstr "Fan fiction"
+
+msgid "folk_songs"
+msgstr "Folk Songs"
+
+msgid "folk_tale"
+msgstr "Folk tales"
+
+msgid "folklore"
+msgstr "Folklore"
+
+msgid "foreign_language"
+msgstr "Foreign languages"
+
+msgid "geo_guides"
+msgstr "Guides"
+
+msgid "global_economy"
+msgstr "Global Economy"
+
+msgid "gothic_novel"
+msgstr "Gothic novel"
+
+msgid "great_story"
+msgstr "Great story"
+
+msgid "historical_fantasy"
+msgstr "Historical fantasy"
+
+msgid "home"
+msgstr "Home: Other"
+
+msgid "home_collecting"
+msgstr "Collecting"
+
+msgid "home_cooking"
+msgstr "Cooking"
+
+msgid "home_crafts"
+msgstr "Hobbies & Crafts"
+
+msgid "home_diy"
+msgstr "Do it yourself"
+
+msgid "home_entertain"
+msgstr "Entertaining"
+
+msgid "home_garden"
+msgstr "Garden"
+
+msgid "home_health"
+msgstr "Health"
+
+msgid "home_pets"
+msgstr "Pets"
+
+msgid "home_sex"
+msgstr "Erotica, Sex"
+
+msgid "home_sport"
+msgstr "Sports"
+
+msgid "humor"
+msgstr "Misk Humor"
+
+msgid "humor_anecdote"
+msgstr "Anecdote"
+
+msgid "humor_fantasy"
+msgstr "Humorous fantasy"
+
+msgid "humor_prose"
+msgstr "Humor Prose"
+
+msgid "humor_satire"
+msgstr "Satire"
+
+msgid "humor_verse"
+msgstr "Humor Verses"
+
+msgid "in_verse"
+msgstr "In verse"
+
+msgid "industries"
+msgstr "Industries"
+
+msgid "job_hunting"
+msgstr "Job Hunting"
+
+msgid "limerick"
+msgstr "Limerick"
+
+msgid "love"
+msgstr "About love"
+
+msgid "love_contemporary"
+msgstr "Contemporary Romance"
+
+msgid "love_detective"
+msgstr "Detective Romance"
+
+msgid "love_erotica"
+msgstr "Erotica"
+
+msgid "love_hard"
+msgstr "Porno"
+
+msgid "love_history"
+msgstr "Historical Romance"
+
+msgid "love_sf"
+msgstr "Love SF"
+
+msgid "love_short"
+msgstr "Short Romance"
+
+msgid "lyrics"
+msgstr "Lyrics"
+
+msgid "management"
+msgstr "Management"
+
+msgid "marketing"
+msgstr "Marketing, PR, Adv"
+
+msgid "military"
+msgstr "Military"
+
+msgid "military_arts"
+msgstr "Military Arts"
+
+msgid "military_history"
+msgstr "Military History"
+
+msgid "military_special"
+msgstr "Military special"
+
+msgid "military_weapon"
+msgstr "Weapon"
+
+msgid "music"
+msgstr "Music"
+
+msgid "mystery"
+msgstr "Mystery"
+
+msgid "nonf_biography"
+msgstr "Biography & Memoirs"
+
+msgid "nonf_criticism"
+msgstr "Criticism"
+
+msgid "nonf_military"
+msgstr "Military docs"
+
+msgid "nonf_publicism"
+msgstr "Publicism"
+
+msgid "nonfiction"
+msgstr "Misk Nonfiction"
+
+msgid "notes"
+msgstr "Notes"
+
+msgid "nsf"
+msgstr "Non Science Fiction"
+
+msgid "org_behavior"
+msgstr "Corporate Culture"
+
+msgid "other"
+msgstr "Other"
+
+msgid "palindromes"
+msgstr "Palindromes"
+
+msgid "palmistry"
+msgstr "Palmistry"
+
+msgid "paper_work"
+msgstr "Paper Work"
+
+msgid "periodic"
+msgstr "Periodic"
+
+msgid "personal_finance"
+msgstr "Personal Finance"
+
+msgid "poetry"
+msgstr "Poetry"
+
+msgid "popadanec"
+msgstr "Trappee"
+
+msgid "popular_business"
+msgstr "Popular Business"
+
+msgid "prose"
+msgstr "Prose"
+
+msgid "prose_classic"
+msgstr "Classical Prose"
+
+msgid "prose_contemporary"
+msgstr "Contemporary Prose"
+
+msgid "prose_counter"
+msgstr "Counterculture"
+
+msgid "prose_epic"
+msgstr "Epopee"
+
+msgid "prose_game"
+msgstr "Game book"
+
+msgid "prose_history"
+msgstr "Historical Prose"
+
+msgid "prose_magic"
+msgstr "Magic realism"
+
+msgid "prose_military"
+msgstr "Military Prose"
+
+msgid "prose_rus_classic"
+msgstr "Russian Classics"
+
+msgid "prose_sentimental"
+msgstr "Sentimental Prose"
+
+msgid "prose_su_classics"
+msgstr "Soviet Classics"
+
+msgid "proverbs"
+msgstr "Proverbs"
+
+msgid "psy_childs"
+msgstr "Child Psychology"
+
+msgid "psy_sex_and_family"
+msgstr "Sex and family"
+
+msgid "psy_theraphy"
+msgstr "Psychotherapy and counselling"
+
+msgid "real_estate"
+msgstr "Real Estate"
+
+msgid "ref_dict"
+msgstr "Dictionaries"
+
+msgid "ref_encyc"
+msgstr "Encyclopedias"
+
+msgid "ref_guide"
+msgstr "Guidebooks"
+
+msgid "ref_ref"
+msgstr "Reference"
+
+msgid "reference"
+msgstr "Misk References"
+
+msgid "religion"
+msgstr "Religion: Other"
+
+msgid "religion_budda"
+msgstr "Buddha"
+
+msgid "religion_catholicism"
+msgstr "Catholicism"
+
+msgid "religion_christianity"
+msgstr "Christianity"
+
+msgid "religion_esoterics"
+msgstr "Esoterics"
+
+msgid "religion_hinduism"
+msgstr "Hinduism"
+
+msgid "religion_islam"
+msgstr "Islam"
+
+msgid "religion_judaism"
+msgstr "Judaism"
+
+msgid "religion_orthodoxy"
+msgstr "Orthodoxy"
+
+msgid "religion_paganism"
+msgstr "Paganism"
+
+msgid "religion_protestantism"
+msgstr "Protestantism"
+
+msgid "religion_rel"
+msgstr "Religion"
+
+msgid "religion_self"
+msgstr "Self-perfection"
+
+msgid "riddles"
+msgstr "Riddles"
+
+msgid "roman"
+msgstr "Roman"
+
+msgid "sagas"
+msgstr "Sagas"
+
+msgid "scenarios"
+msgstr "Scenarios"
+
+msgid "sci_abstract"
+msgstr "Abstract"
+
+msgid "sci_anachem"
+msgstr "Analitic Chemistry"
+
+msgid "sci_biochem"
+msgstr "Biochemistry"
+
+msgid "sci_biology"
+msgstr "Biology"
+
+msgid "sci_biophys"
+msgstr "Biophysics"
+
+msgid "sci_botany"
+msgstr "Botany"
+
+msgid "sci_build"
+msgstr "Building"
+
+msgid "sci_business"
+msgstr "Business"
+
+msgid "sci_chem"
+msgstr "Chemistry"
+
+msgid "sci_cosmos"
+msgstr "Cosmos"
+
+msgid "sci_crib"
+msgstr "Cribs"
+
+msgid "sci_culture"
+msgstr "Cultural Science"
+
+msgid "sci_ecology"
+msgstr "Ecology"
+
+msgid "sci_economy"
+msgstr "Economy"
+
+msgid "sci_geo"
+msgstr "Geology"
+
+msgid "sci_history"
+msgstr "History"
+
+msgid "sci_juris"
+msgstr "Jurisprudence"
+
+msgid "sci_linguistic"
+msgstr "Linguistics"
+
+msgid "sci_math"
+msgstr "Mathematics"
+
+msgid "sci_medicine"
+msgstr "Medicine"
+
+msgid "sci_medicine_alternative"
+msgstr "Alternative medicine"
+
+msgid "sci_metal"
+msgstr "Metallurgy"
+
+msgid "sci_orgchem"
+msgstr "Organic Chemistry"
+
+msgid "sci_pedagogy"
+msgstr "Pedagogy"
+
+msgid "sci_philology"
+msgstr "Philology"
+
+msgid "sci_philosophy"
+msgstr "Philosophy"
+
+msgid "sci_phys"
+msgstr "Physics"
+
+msgid "sci_physchem"
+msgstr "Physical chemistry"
+
+msgid "sci_politics"
+msgstr "Politics"
+
+msgid "sci_popular"
+msgstr "Science popular"
+
+msgid "sci_psychology"
+msgstr "Psychology"
+
+msgid "sci_radio"
+msgstr "Radio"
+
+msgid "sci_religion"
+msgstr "Religious Studies"
+
+msgid "sci_social_studies"
+msgstr "Social studies"
+
+msgid "sci_state"
+msgstr "State science"
+
+msgid "sci_tech"
+msgstr "Technical"
+
+msgid "sci_textbook"
+msgstr "Textbook"
+
+msgid "sci_transport"
+msgstr "Transport"
+
+msgid "sci_veterinary"
+msgstr "Veterinary"
+
+msgid "sci_zoo"
+msgstr "Zoology"
+
+msgid "science"
+msgstr "Misk Science, Education"
+
+msgid "screenplays"
+msgstr "Screenplays"
+
+msgid "sf"
+msgstr "Science Fiction"
+
+msgid "sf_action"
+msgstr "Action SF"
+
+msgid "sf_cyberpunk"
+msgstr "Cyberpunk"
+
+msgid "sf_detective"
+msgstr "Detective SF"
+
+msgid "sf_epic"
+msgstr "Epic SF"
+
+msgid "sf_etc"
+msgstr "Other SF"
+
+msgid "sf_fantasy"
+msgstr "Fantasy"
+
+msgid "sf_fantasy_city"
+msgstr "Fantasy city"
+
+msgid "sf_fantasy_irony"
+msgstr "Ironyc female fantasy"
+
+msgid "sf_heroic"
+msgstr "Heroic SF"
+
+msgid "sf_history"
+msgstr "Alternative history"
+
+msgid "sf_horror"
+msgstr "Horror"
+
+msgid "sf_humor"
+msgstr "Humor SF"
+
+msgid "sf_irony"
+msgstr "Ironical SF"
+
+msgid "sf_mystic"
+msgstr "Mystic"
+
+msgid "sf_postapocalyptic"
+msgstr "Postapocalyptic"
+
+msgid "sf_social"
+msgstr "Social SF"
+
+msgid "sf_space"
+msgstr "Space SF"
+
+msgid "sf_space_opera"
+msgstr "Space Opera"
+
+msgid "sf_stimpank"
+msgstr "Stimpank"
+
+msgid "sf_technofantasy"
+msgstr "Technofantasy"
+
+msgid "short_story"
+msgstr "Short story"
+
+msgid "small_business"
+msgstr "Small Business"
+
+msgid "song_poetry"
+msgstr "Song Poetry"
+
+msgid "stock"
+msgstr "Stock"
+
+msgid "story"
+msgstr "Story"
+
+msgid "theatre"
+msgstr "Theatre"
+
+msgid "thriller"
+msgstr "Thrillers"
+
+msgid "thriller_legal"
+msgstr "Legal thriller"
+
+msgid "thriller_medical"
+msgstr "Medical thriller"
+
+msgid "thriller_techno"
+msgstr "Techno Thriller"
+
+msgid "trade"
+msgstr "Trade"
+
+msgid "tragedy"
+msgstr "Tragedy"
+
+msgid "unfinished"
+msgstr "Unfinished"
+
+msgid "vaudeville"
+msgstr "Vaudeville"
+
+msgid "vers_libre"
+msgstr "Vers libre"
+
+msgid "visual_arts"
+msgstr "Visual Arts"
+
+msgid "visual_poetry"
+msgstr "Visual Poetry"
+
+msgid "ya"
+msgstr "Young-adult fiction"
+
+
+msgctxt "Genres|Category|"
+msgid "category_fantasy"
+msgstr "SF, Fantasy"
+
+msgctxt "Genres|Category|"
+msgid "category_detective"
+msgstr "Detectives, Thrillers"
+
+msgctxt "Genres|Category|"
+msgid "category_prose"
+msgstr "Prose"
+
+msgctxt "Genres|Category|"
+msgid "category_love"
+msgstr "Love"
+
+msgctxt "Genres|Category|"
+msgid "category_adventures"
+msgstr "Adventures"
+
+msgctxt "Genres|Category|"
+msgid "category_child"
+msgstr "Children's"
+
+msgctxt "Genres|Category|"
+msgid "category_poetry"
+msgstr "Poetry, Dramaturgy"
+
+msgctxt "Genres|Category|"
+msgid "category_antique"
+msgstr "Antique"
+
+msgctxt "Genres|Category|"
+msgid "category_science"
+msgstr "Science, Education"
+
+msgctxt "Genres|Category|"
+msgid "category_comp"
+msgstr "Computers"
+
+msgctxt "Genres|Category|"
+msgid "category_ref"
+msgstr "Reference"
+
+msgctxt "Genres|Category|"
+msgid "category_religion"
+msgstr "Religion"
+
+msgctxt "Genres|Category|"
+msgid "category_humor"
+msgstr "Humor"
+
+msgctxt "Genres|Category|"
+msgid "category_home"
+msgstr "Home, Family"
+
+msgctxt "Genres|Category|"
+msgid "category_technics"
+msgstr "Technics"
+
+msgctxt "Genres|Category|"
+msgid "category_other"
+msgstr "Other"
+
+msgctxt "Genres|Category|"
+msgid "category_business"
+msgstr "Economy, Business"
+
+msgctxt "Genres|Category|"
+msgid "category_nonfiction"
+msgstr "Nonfiction"
+
+msgctxt "Genres|Category|"
+msgid "category_drama"
+msgstr "Dramaturgy"
+
+msgctxt "Genres|Category|"
+msgid "category_folk"
+msgstr "Folklore"
+
+msgctxt "Genres|Category|"
+msgid "category_military"
+msgstr "Military"
+
+
+msgid "network_literature"
+msgstr "Network Literature"
+
+msgid "sf_litrpg"
+msgstr "LitRPG"
+
+msgid "popadancy"
+msgstr "Accidental Travel"
+
+msgid "russian_fantasy"
+msgstr "Slavic Fantasy"

@@ -1,0 +1,121 @@
+{{template "_layout" .}}
+{{define "content"}}
+
+    {{template "_search_input" .}}
+
+    <div class="columns is-mobile">
+        <div class="column">
+            <div class="content">
+                <p>{{.T.Getf "Results: %d-%d from %d" .Results.RangeStart .Results.RangeEnd .Results.Total}}</p>
+            </div>
+
+            <div class="content">
+                {{range .Hits}}
+                    <article class="book" itemtype="http://schema.org/Book">
+                        <div class="columns is-gapless">
+                            <div class="column is-9">
+                                <div class="content is-max-desktop">
+                                    <strong itemprop="name">{{.Title}}</strong> <em>({{.PubYear}})</em>
+
+                                    {{if .Authors}}
+                                        <div class="book-details-row">
+                                            <label class="book-details-row--field"><span>{{$.T.Get "authors"}}</span></label>
+                                            <span class="book-details-row--value">
+                                              {{range .Authors}}
+                                                  <a class="comma-separated" href="/search?q={{.}}&field=Authors"
+                                                     itemprop="author">{{.}}</a>
+                                              {{end}}
+                                            </span>
+                                        </div>
+                                    {{end}}
+
+                                    {{if ne .Series ""}}
+                                        <div class="book-details-row">
+                                            <label class="book-details-row--field"><span>{{$.T.Get "series"}}</span></label>
+                                            <span class="book-details-row--value"><a
+                                                        href="/search?q={{.Series}}&field=Series"
+                                                        itemprop="series">{{.Series}}</a> (№ {{.SeriesNo}})</span>
+                                        </div>
+                                    {{end}}
+
+                                    <div class="book-details-row">
+                                        <label class="book-details-row--field"><span>{{$.T.Get "genres"}}</span></label>
+                                        <span class="book-details-row--value">
+                                          {{range .Genres }}
+                                              <span class="comma-separated" itemprop="genre">{{$.T.DGet "genres" .}}</span>
+                                          {{end}}
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="column">
+                                <div class="buttons has-addons is-right">
+                                    <a class="button is-primary is-outlined" aria-label="download" href="/download/{{.LibId}}">
+                                        <span>{{.Ext}}</span>
+                                        <span class="icon">
+                                            <i class="fa-solid fa-download" aria-hidden="true"></i>
+                                        </span>
+                                    </a>
+                                    {{$ext := .Ext}}
+                                    {{$libId := .LibId}}
+                                    {{range $conv := $.Converters}}
+                                        {{if eq $conv.From $ext}}
+                                            <a class="button is-primary is-outlined" aria-label="download" href="/download/{{$libId}}/{{$conv.To}}">
+                                                <span>{{$conv.To}}</span>
+                                                <span class="icon">
+                                                    <i class="fa-solid fa-download" aria-hidden="true"></i>
+                                                </span>
+                                            </a>
+                                        {{end}}
+                                    {{end}}
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                {{end}}
+            </div>
+
+            <div class="columns is-mobile is-centered">
+                <div class="column is-narrow">
+                    {{if .Paginator.HasPrev}}
+                        <a class="button" href="/search?q={{.Query}}&field={{.Field}}" aria-label="first page">
+                            <i class="fa-solid fa-angles-left"></i>
+                        </a>
+                        <a class="button"
+                           href="/search?q={{.Query}}&field={{.Field}}{{if .Paginator.PrevPage}}&page={{.Paginator.PrevPage}}{{end}}"
+                           aria-label="next page">
+                            <i class="fa-solid fa-arrow-left-long"></i>
+                        </a>
+                    {{else}}
+                        <a class="button" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
+                            <i class="fa-solid fa-angles-left"></i>
+                        </a>
+                        <a class="button" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
+                            <i class="fa-solid fa-arrow-left-long"></i>
+                        </a>
+                    {{end}}
+
+                    {{if .Paginator.HasNext}}
+                        <a class="button" href="/search?q={{.Query}}&field={{.Field}}&page={{.Paginator.NextPage}}"
+                           aria-label="previous page">
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                        <a class="button" href="/search?q={{.Query}}&field={{.Field}}&page={{.Paginator.Last}}"
+                           aria-label="last page">
+                            <i class="fa-solid fa-angles-right"></i>
+                        </a>
+                    {{else}}
+                        <a class="button" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                        <a class="button" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
+                            <i class="fa-solid fa-angles-right"></i>
+                        </a>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+    </div>
+{{end}}

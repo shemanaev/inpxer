@@ -1,0 +1,47 @@
+{{define "_search_input"}}
+    <div class="columns is-mobile">
+        <div class="column">
+
+            <div class="content">
+                <h3>{{.Title}}</h3>
+            </div>
+
+            <form action="/search" method="get">
+                <div class="field has-addons">
+                    <div class="control" style="width: 100%;">
+                        <input class="input" type="text" name="q" placeholder="{{.T.Get "Title, author, series…"}}"
+                               value="{{if ne .Query ""}}{{.Query}}{{end}}">
+                    </div>
+                    <div class="control">
+                        <button class="button is-info" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="radio">
+                            <input type="radio" name="field" value="_all"
+                                   {{if or (eq .Field "_all") (eq .Field "")}}checked{{end}}>
+                            {{.T.Get "Everywhere"}}
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="field" value="Title" {{if eq .Field "Title"}}checked{{end}}>
+                            {{.T.Get "Title"}}
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="field" value="Authors" {{if eq .Field "Authors"}}checked{{end}}>
+                            {{.T.Get "Author"}}
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="field" value="Series" {{if eq .Field "Series"}}checked{{end}}>
+                            {{.T.Get "Series"}}
+                        </label>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+{{end}}

@@ -1,0 +1,10 @@
+.dockerignore
+.goreleaser.yml
+.git
+.github
+.gitignore
+README.md
+LICENSE
+.vscode
+
+tmp/

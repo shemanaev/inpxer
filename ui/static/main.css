@@ -1,0 +1,42 @@
+/* Make comma separated lists easier */
+.comma-separated:after {
+    color: #222;
+    content: ',';
+}
+
+.comma-separated:last-of-type:after {
+    content: '';
+}
+
+.book {
+    border-top: 1px solid #e6e6e6;
+    padding: 10px 0;
+}
+
+.book-details-row {
+    line-height: 2;
+}
+
+.book-details-row--field {
+    display: inline-block;
+    color: #7f7f7f;
+    border-bottom: 1px dotted #7f7f7f;
+    width: 180px;
+    margin-right: 8px;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+.book-details-row--field span {
+    float: left;
+    background: #fff;
+    position: relative;
+    top: 2px;
+    padding-right: 4px;
+    line-height: 1em;
+}
+
+@media (max-width: 641px) {
+    .book-details-row--field {
+        width: 4em;
+    }
+}

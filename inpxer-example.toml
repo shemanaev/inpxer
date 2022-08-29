@@ -1,0 +1,23 @@
+# language used for interface and indexing
+language = "en" # en, ru
+# title displayed on web and in OPDS catalog
+title = "My library"
+# where to store index
+index_path = "/data/index"
+# where is you books stored
+library_path = "/data/library"
+# host:port to listen on
+listen = ":8080"
+# fully qualified url to server. required for OPDS (OpenSearch)
+full_url = "http://localhost:8080"
+
+# format converters. can be as many as you want
+#[[converters]]
+## source file extension
+#from = "fb2"
+## target file extension
+#to = "epub"
+## converter executable
+#command = "fb2epub"
+## converter arguments. {from} becomes source file path, {to} - output file path
+#arguments = "{from} {to}"

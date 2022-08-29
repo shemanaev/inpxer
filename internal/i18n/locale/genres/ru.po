@@ -1,0 +1,859 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: inpxer 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-09 19:18+0300\n"
+"PO-Revision-Date: 2017-02-09 19:27+0300\n"
+"Last-Translator: Denis Shemanaev <denis.shemanaev@gmail.com>\n"
+"Language-Team: Denis Shemanaev <denis.shemanaev@gmail.com>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.11\n"
+
+msgid "accounting"
+msgstr "Бухучет и аудит"
+
+msgid "adv_animal"
+msgstr "Природа и животные"
+
+msgid "adv_geo"
+msgstr "Путешествия и география"
+
+msgid "adv_history"
+msgstr "Исторические приключения"
+
+msgid "adv_indian"
+msgstr "Приключения про индейцев"
+
+msgid "adv_maritime"
+msgstr "Морские приключения"
+
+msgid "adv_western"
+msgstr "Вестерн"
+
+msgid "adventure"
+msgstr "Приключения: прочее"
+
+msgid "antique"
+msgstr "Старинная литература: прочее"
+
+msgid "antique_ant"
+msgstr "Античная литература"
+
+msgid "antique_east"
+msgstr "Древневосточная литература"
+
+msgid "antique_european"
+msgstr "Древнеевропейская литература"
+
+msgid "antique_myths"
+msgstr "Мифы. Легенды. Эпос"
+
+msgid "antique_russian"
+msgstr "Древнерусская литература"
+
+msgid "aphorisms"
+msgstr "Афоризмы"
+
+msgid "architecture_book"
+msgstr "Архитектура"
+
+msgid "astrology"
+msgstr "Астрология"
+
+msgid "auto_regulations"
+msgstr "Автомобили и ПДД"
+
+msgid "banking"
+msgstr "Банковское дело"
+
+msgid "child_adv"
+msgstr "Детские приключения"
+
+msgid "child_det"
+msgstr "Детские остросюжетные"
+
+msgid "child_education"
+msgstr "Образовательная литература"
+
+msgid "child_folklore"
+msgstr "Детский фольклор"
+
+msgid "child_prose"
+msgstr "Детская проза"
+
+msgid "child_sf"
+msgstr "Детская фантастика"
+
+msgid "child_tale"
+msgstr "Сказка"
+
+msgid "child_verse"
+msgstr "Детские стихи"
+
+msgid "children"
+msgstr "Детская литература: прочее"
+
+msgid "cine"
+msgstr "Кино"
+
+msgid "comedy"
+msgstr "Комедия"
+
+msgid "comp_db"
+msgstr "Базы данных"
+
+msgid "comp_dsp"
+msgstr "Цифровая обработка сигналов"
+
+msgid "comp_hard"
+msgstr "Аппаратное обеспечение"
+
+msgid "comp_osnet"
+msgstr "ОС и Сети"
+
+msgid "comp_programming"
+msgstr "Программирование"
+
+msgid "comp_soft"
+msgstr "Программы"
+
+msgid "comp_www"
+msgstr "Интернет"
+
+msgid "computers"
+msgstr "Околокомпьютерная литература"
+
+msgid "design"
+msgstr "Искусство и Дизайн"
+
+msgid "det_action"
+msgstr "Боевик"
+
+msgid "det_classic"
+msgstr "Классический детектив"
+
+msgid "det_cozy"
+msgstr "Дамский детективный роман"
+
+msgid "det_crime"
+msgstr "Криминальный детектив"
+
+msgid "det_espionage"
+msgstr "Шпионский детектив"
+
+msgid "det_hard"
+msgstr "Крутой детектив"
+
+msgid "det_history"
+msgstr "Исторический детектив"
+
+msgid "det_irony"
+msgstr "Иронический детектив"
+
+msgid "det_maniac"
+msgstr "Маньяки"
+
+msgid "det_police"
+msgstr "Полицейский детектив"
+
+msgid "det_political"
+msgstr "Политический детектив"
+
+msgid "detective"
+msgstr "Детективы: прочее"
+
+msgid "dissident"
+msgstr "Антисоветская литература"
+
+msgid "drama"
+msgstr "Драма"
+
+msgid "dramaturgy"
+msgstr "Драматургия: прочее"
+
+msgid "economics"
+msgstr "Экономика"
+
+msgid "epic"
+msgstr "Былины"
+
+msgid "epic_poetry"
+msgstr "Эпическая поэзия"
+
+msgid "epistolary_fiction"
+msgstr "Эпистолярная проза"
+
+msgid "essay"
+msgstr "Эссе, очерк, этюд, набросок"
+
+msgid "experimental_poetry"
+msgstr "Экспериментальная поэзия"
+
+msgid "extravaganza"
+msgstr "Феерия"
+
+msgid "fable"
+msgstr "Басни"
+
+msgid "fairy_fantasy"
+msgstr "Сказочная фантастика"
+
+msgid "fanfiction"
+msgstr "Фанфик"
+
+msgid "folk_songs"
+msgstr "Народные песни"
+
+msgid "folk_tale"
+msgstr "Народные сказки"
+
+msgid "folklore"
+msgstr "Фольклор: прочее"
+
+msgid "foreign_language"
+msgstr "Иностранные языки"
+
+msgid "geo_guides"
+msgstr "Путеводители"
+
+msgid "global_economy"
+msgstr "Внешняя торговля"
+
+msgid "gothic_novel"
+msgstr "Готический роман"
+
+msgid "great_story"
+msgstr "Повесть"
+
+msgid "historical_fantasy"
+msgstr "Историческое фэнтези"
+
+msgid "home"
+msgstr "Домоводство"
+
+msgid "home_collecting"
+msgstr "Коллекционирование"
+
+msgid "home_cooking"
+msgstr "Кулинария"
+
+msgid "home_crafts"
+msgstr "Хобби и ремесла"
+
+msgid "home_diy"
+msgstr "Сделай сам"
+
+msgid "home_entertain"
+msgstr "Развлечения"
+
+msgid "home_garden"
+msgstr "Сад и огород"
+
+msgid "home_health"
+msgstr "Здоровье"
+
+msgid "home_pets"
+msgstr "Домашние животные"
+
+msgid "home_sex"
+msgstr "Эротика, Секс"
+
+msgid "home_sport"
+msgstr "Спорт"
+
+msgid "humor"
+msgstr "Юмор: прочее"
+
+msgid "humor_anecdote"
+msgstr "Анекдоты"
+
+msgid "humor_fantasy"
+msgstr "Юмористическое фэнтези"
+
+msgid "humor_prose"
+msgstr "Юмористическая проза"
+
+msgid "humor_satire"
+msgstr "Сатира"
+
+msgid "humor_verse"
+msgstr "Юмористические стихи"
+
+msgid "in_verse"
+msgstr "В стихах"
+
+msgid "industries"
+msgstr "Отраслевые издания"
+
+msgid "job_hunting"
+msgstr "Поиск работы, карьера"
+
+msgid "limerick"
+msgstr "Частушки, прибаутки, потешки"
+
+msgid "love"
+msgstr "О любви"
+
+msgid "love_contemporary"
+msgstr "Современные любовные романы"
+
+msgid "love_detective"
+msgstr "Любовные детективы"
+
+msgid "love_erotica"
+msgstr "Эротика"
+
+msgid "love_hard"
+msgstr "Порно"
+
+msgid "love_history"
+msgstr "Исторические любовные романы"
+
+msgid "love_sf"
+msgstr "Любовная фантастика"
+
+msgid "love_short"
+msgstr "Короткие любовные романы"
+
+msgid "lyrics"
+msgstr "Лирика"
+
+msgid "management"
+msgstr "Управление, подбор персонала"
+
+msgid "marketing"
+msgstr "Маркетинг, PR, реклама"
+
+msgid "military"
+msgstr "Военное дело: прочее"
+
+msgid "military_arts"
+msgstr "Боевые искусства"
+
+msgid "military_history"
+msgstr "Военная история"
+
+msgid "military_special"
+msgstr "Cпецслужбы"
+
+msgid "military_weapon"
+msgstr "Военная техника и вооружение"
+
+msgid "music"
+msgstr "Музыка"
+
+msgid "mystery"
+msgstr "Мистерия"
+
+msgid "nonf_biography"
+msgstr "Биографии и Мемуары"
+
+msgid "nonf_criticism"
+msgstr "Критика"
+
+msgid "nonf_military"
+msgstr "Военная документалистика"
+
+msgid "nonf_publicism"
+msgstr "Публицистика"
+
+msgid "nonfiction"
+msgstr "Документальная литература"
+
+msgid "notes"
+msgstr "Партитуры"
+
+msgid "nsf"
+msgstr "Ненаучная фантастика"
+
+msgid "org_behavior"
+msgstr "Корпоративная культура"
+
+msgid "other"
+msgstr "Неотсортированное"
+
+msgid "palindromes"
+msgstr "Палиндромы"
+
+msgid "palmistry"
+msgstr "Хиромантия"
+
+msgid "paper_work"
+msgstr "Делопроизводство"
+
+msgid "periodic"
+msgstr "Газеты и журналы"
+
+msgid "personal_finance"
+msgstr "Личные финансы"
+
+msgid "poetry"
+msgstr "Поэзия: прочее"
+
+msgid "popadanec"
+msgstr "Попаданцы"
+
+msgid "popular_business"
+msgstr "О бизнесе популярно"
+
+msgid "prose"
+msgstr "Проза"
+
+msgid "prose_classic"
+msgstr "Классическая проза"
+
+msgid "prose_contemporary"
+msgstr "Современная проза"
+
+msgid "prose_counter"
+msgstr "Контркультура"
+
+msgid "prose_epic"
+msgstr "Эпопея"
+
+msgid "prose_game"
+msgstr "Книга-игра"
+
+msgid "prose_history"
+msgstr "Историческая проза"
+
+msgid "prose_magic"
+msgstr "Магический реализм"
+
+msgid "prose_military"
+msgstr "О войне"
+
+msgid "prose_rus_classic"
+msgstr "Русская классическая проза"
+
+msgid "prose_sentimental"
+msgstr "Сентиментальная проза"
+
+msgid "prose_su_classics"
+msgstr "Советская классическая проза"
+
+msgid "proverbs"
+msgstr "Пословицы, поговорки"
+
+msgid "psy_childs"
+msgstr "Детская психология"
+
+msgid "psy_sex_and_family"
+msgstr "Секс и семейная психология"
+
+msgid "psy_theraphy"
+msgstr "Психотерапия и консультирование"
+
+msgid "real_estate"
+msgstr "Недвижимость"
+
+msgid "ref_dict"
+msgstr "Словари"
+
+msgid "ref_encyc"
+msgstr "Энциклопедии"
+
+msgid "ref_guide"
+msgstr "Руководства"
+
+msgid "ref_ref"
+msgstr "Справочники"
+
+msgid "reference"
+msgstr "Справочная литература"
+
+msgid "religion"
+msgstr "Религиозная литература: прочее"
+
+msgid "religion_budda"
+msgstr "Буддизм"
+
+msgid "religion_catholicism"
+msgstr "Католицизм"
+
+msgid "religion_christianity"
+msgstr "Христианство"
+
+msgid "religion_esoterics"
+msgstr "Эзотерика"
+
+msgid "religion_hinduism"
+msgstr "Индуизм"
+
+msgid "religion_islam"
+msgstr "Ислам"
+
+msgid "religion_judaism"
+msgstr "Иудаизм"
+
+msgid "religion_orthodoxy"
+msgstr "Православие"
+
+msgid "religion_paganism"
+msgstr "Язычество"
+
+msgid "religion_protestantism"
+msgstr "Протестантизм"
+
+msgid "religion_rel"
+msgstr "Религия"
+
+msgid "religion_self"
+msgstr "Самосовершенствование"
+
+msgid "riddles"
+msgstr "Загадки"
+
+msgid "roman"
+msgstr "Роман"
+
+msgid "sagas"
+msgstr "Семейный роман/Семейная сага"
+
+msgid "scenarios"
+msgstr "Сценарии"
+
+msgid "sci_abstract"
+msgstr "Рефераты"
+
+msgid "sci_anachem"
+msgstr "Аналитическая химия"
+
+msgid "sci_biochem"
+msgstr "Биохимия"
+
+msgid "sci_biology"
+msgstr "Биология"
+
+msgid "sci_biophys"
+msgstr "Биофизика"
+
+msgid "sci_botany"
+msgstr "Ботаника"
+
+msgid "sci_build"
+msgstr "Строительство и сопромат"
+
+msgid "sci_business"
+msgstr "Деловая литература"
+
+msgid "sci_chem"
+msgstr "Химия"
+
+msgid "sci_cosmos"
+msgstr "Астрономия и Космос"
+
+msgid "sci_crib"
+msgstr "Шпаргалки"
+
+msgid "sci_culture"
+msgstr "Культурология"
+
+msgid "sci_ecology"
+msgstr "Экология"
+
+msgid "sci_economy"
+msgstr "Экономика"
+
+msgid "sci_geo"
+msgstr "Геология и география"
+
+msgid "sci_history"
+msgstr "История"
+
+msgid "sci_juris"
+msgstr "Юриспруденция"
+
+msgid "sci_linguistic"
+msgstr "Языкознание"
+
+msgid "sci_math"
+msgstr "Математика"
+
+msgid "sci_medicine"
+msgstr "Медицина"
+
+msgid "sci_medicine_alternative"
+msgstr "Альтернативная медицина"
+
+msgid "sci_metal"
+msgstr "Металлургия"
+
+msgid "sci_orgchem"
+msgstr "Органическая химия"
+
+msgid "sci_pedagogy"
+msgstr "Педагогика"
+
+msgid "sci_philology"
+msgstr "Литературоведение"
+
+msgid "sci_philosophy"
+msgstr "Философия"
+
+msgid "sci_phys"
+msgstr "Физика"
+
+msgid "sci_physchem"
+msgstr "Физическая химия"
+
+msgid "sci_politics"
+msgstr "Политика"
+
+msgid "sci_popular"
+msgstr "Научпоп"
+
+msgid "sci_psychology"
+msgstr "Психология"
+
+msgid "sci_radio"
+msgstr "Радиоэлектроника"
+
+msgid "sci_religion"
+msgstr "Религиоведение"
+
+msgid "sci_social_studies"
+msgstr "Обществознание"
+
+msgid "sci_state"
+msgstr "Государство и право"
+
+msgid "sci_tech"
+msgstr "Технические науки"
+
+msgid "sci_textbook"
+msgstr "Учебники"
+
+msgid "sci_transport"
+msgstr "Транспорт и авиация"
+
+msgid "sci_veterinary"
+msgstr "Ветеринария"
+
+msgid "sci_zoo"
+msgstr "Зоология"
+
+msgid "science"
+msgstr "Научная литература: прочее"
+
+msgid "screenplays"
+msgstr "Киносценарии"
+
+msgid "sf"
+msgstr "Научная фантастика"
+
+msgid "sf_action"
+msgstr "Боевая фантастика"
+
+msgid "sf_cyberpunk"
+msgstr "Киберпанк"
+
+msgid "sf_detective"
+msgstr "Детективная фантастика"
+
+msgid "sf_epic"
+msgstr "Эпическая фантастика"
+
+msgid "sf_etc"
+msgstr "Фантастика: прочее"
+
+msgid "sf_fantasy"
+msgstr "Фэнтези"
+
+msgid "sf_fantasy_city"
+msgstr "Городское фэнтези"
+
+msgid "sf_fantasy_irony"
+msgstr "Ироническое фэнтези"
+
+msgid "sf_heroic"
+msgstr "Героическая фантастика"
+
+msgid "sf_history"
+msgstr "Альтернативная история"
+
+msgid "sf_horror"
+msgstr "Ужасы"
+
+msgid "sf_humor"
+msgstr "Юмористическая фантастика"
+
+msgid "sf_irony"
+msgstr "Ироническая фантастика"
+
+msgid "sf_mystic"
+msgstr "Мистика"
+
+msgid "sf_postapocalyptic"
+msgstr "Постапокалипсис"
+
+msgid "sf_social"
+msgstr "Социальная фантастика"
+
+msgid "sf_space"
+msgstr "Космическая фантастика"
+
+msgid "sf_space_opera"
+msgstr "Космоопера"
+
+msgid "sf_stimpank"
+msgstr "Стимпанк"
+
+msgid "sf_technofantasy"
+msgstr "Технофэнтези"
+
+msgid "short_story"
+msgstr "Рассказ"
+
+msgid "small_business"
+msgstr "Малый бизнес"
+
+msgid "song_poetry"
+msgstr "Песенная поэзия"
+
+msgid "stock"
+msgstr "Ценные бумаги, инвестиции"
+
+msgid "story"
+msgstr "Новелла"
+
+msgid "theatre"
+msgstr "Театр"
+
+msgid "thriller"
+msgstr "Триллер"
+
+msgid "thriller_legal"
+msgstr "Юридический триллер"
+
+msgid "thriller_medical"
+msgstr "Медицинский триллер"
+
+msgid "thriller_techno"
+msgstr "Техно триллер"
+
+msgid "trade"
+msgstr "Торговля"
+
+msgid "tragedy"
+msgstr "Трагедия"
+
+msgid "unfinished"
+msgstr "Недописанное"
+
+msgid "vaudeville"
+msgstr "Водевиль"
+
+msgid "vers_libre"
+msgstr "Верлибры"
+
+msgid "visual_arts"
+msgstr "Изобразительное искусство, фотография"
+
+msgid "visual_poetry"
+msgstr "Визуальная поэзия"
+
+msgid "ya"
+msgstr "Подростковая литература"
+
+
+msgctxt "Genres|Category|"
+msgid "category_fantasy"
+msgstr "Фантастика"
+
+msgctxt "Genres|Category|"
+msgid "category_detective"
+msgstr "Детективы и Триллеры"
+
+msgctxt "Genres|Category|"
+msgid "category_prose"
+msgstr "Проза"
+
+msgctxt "Genres|Category|"
+msgid "category_love"
+msgstr "Любовные романы"
+
+msgctxt "Genres|Category|"
+msgid "category_adventures"
+msgstr "Приключения"
+
+msgctxt "Genres|Category|"
+msgid "category_child"
+msgstr "Детское"
+
+msgctxt "Genres|Category|"
+msgid "category_poetry"
+msgstr "Поэзия"
+
+msgctxt "Genres|Category|"
+msgid "category_antique"
+msgstr "Старинное"
+
+msgctxt "Genres|Category|"
+msgid "category_science"
+msgstr "Наука, Образование"
+
+msgctxt "Genres|Category|"
+msgid "category_comp"
+msgstr "Компьютеры и Интернет"
+
+msgctxt "Genres|Category|"
+msgid "category_ref"
+msgstr "Справочная литература"
+
+msgctxt "Genres|Category|"
+msgid "category_religion"
+msgstr "Религия и духовность"
+
+msgctxt "Genres|Category|"
+msgid "category_humor"
+msgstr "Юмор"
+
+msgctxt "Genres|Category|"
+msgid "category_home"
+msgstr "Домоводство (Дом и семья)"
+
+msgctxt "Genres|Category|"
+msgid "category_technics"
+msgstr "Техника"
+
+msgctxt "Genres|Category|"
+msgid "category_other"
+msgstr "Прочее"
+
+msgctxt "Genres|Category|"
+msgid "category_business"
+msgstr "Деловая литература"
+
+msgctxt "Genres|Category|"
+msgid "category_nonfiction"
+msgstr "Документальная литература"
+
+msgctxt "Genres|Category|"
+msgid "category_drama"
+msgstr "Драматургия"
+
+msgctxt "Genres|Category|"
+msgid "category_folk"
+msgstr "Фольклор"
+
+msgctxt "Genres|Category|"
+msgid "category_military"
+msgstr "Военное дело"
+
+
+msgid "network_literature"
+msgstr "Самиздат, сетевая литература"
+
+msgid "sf_litrpg"
+msgstr "ЛитРПГ"
+
+msgid "popadancy"
+msgstr "Попаданцы"
+
+msgid "russian_fantasy"
+msgstr "Славянское фэнтези"

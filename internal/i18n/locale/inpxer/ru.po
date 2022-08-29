@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE VERSION package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-27 23:07+0300\n"
+"PO-Revision-Date: 2022-08-27 23:10+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#: ../../../ui/templates/_search_input.gohtml:12
+msgid "Title, author, series…"
+msgstr "Название, автор, серия…"
+
+#: ../../../ui/templates/_search_input.gohtml:27
+msgid "Everywhere"
+msgstr "Везде"
+
+#: ../../../ui/templates/_search_input.gohtml:31
+msgid "Title"
+msgstr "Название"
+
+#: ../../../ui/templates/_search_input.gohtml:35
+msgid "Author"
+msgstr "Автор"
+
+#: ../../../ui/templates/_search_input.gohtml:39
+msgid "Series"
+msgstr "Серия"
+
+#: ../../../ui/templates/search.gohtml:9
+msgid "Results: %d-%d from %d"
+msgstr "Результаты: %d-%d из %d"
+
+#: ../../../ui/templates/search.gohtml:22
+msgid "authors"
+msgstr "авторы"
+
+#: ../../../ui/templates/search.gohtml:34
+msgid "series"
+msgstr "серия"
+
+#: ../../../ui/templates/search.gohtml:42
+msgid "genres"
+msgstr "жанры"
+
+#: ../../server/opds_handler.go:114
+msgid "Search books by %s"
+msgstr "Искать книги автора %s"
