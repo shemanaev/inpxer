@@ -24,11 +24,6 @@ const (
 )
 
 func main() {
-	cfg, err := config.Load()
-	if err != nil {
-		log.Fatal("Error loading config")
-	}
-
 	app := &cli.App{
 		Version: version,
 		Commands: []*cli.Command{
@@ -37,12 +32,14 @@ func main() {
 				Aliases: []string{"s"},
 				Usage:   "start server",
 				Action:  serveAction,
+				Before:  loadConfig,
 			},
 			{
 				Name:    "import",
 				Aliases: []string{"i"},
 				Usage:   "import .inpx file",
 				Action:  importAction,
+				Before:  loadConfig,
 				Flags: []cli.Flag{
 					&cli.BoolFlag{
 						Name:  "keep-deleted",
@@ -50,10 +47,6 @@ func main() {
 					},
 				},
 			},
-		},
-		Before: func(ctx *cli.Context) error {
-			ctx.Context = context.WithValue(ctx.Context, contextConfig, cfg)
-			return nil
 		},
 	}
 
@@ -72,4 +65,14 @@ func serveAction(ctx *cli.Context) error {
 	cfg := ctx.Context.Value(contextConfig).(*config.MyConfig)
 	fmt.Printf("Starting web server on: http://%s\n", cfg.Listen)
 	return server.Run(cfg)
+}
+
+func loadConfig(ctx *cli.Context) error {
+	cfg, err := config.Load()
+	if err != nil {
+		return fmt.Errorf("error loading config %v", err)
+	}
+
+	ctx.Context = context.WithValue(ctx.Context, contextConfig, cfg)
+	return nil
 }
