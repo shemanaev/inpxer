@@ -316,7 +316,7 @@ func (p *Parser) readCollection() error {
 	}
 
 	// filename
-	_, err = br.ReadString('\n')
+	_, _ = br.ReadString('\n')
 
 	_, err = fmt.Fscan(br, &p.Id)
 	if err != nil {
@@ -325,7 +325,7 @@ func (p *Parser) readCollection() error {
 
 	// FIXME: there is can be more than one line, but who cares?
 	_, _ = br.ReadString('\n')
-	p.Comment, err = readCleanString(br)
+	p.Comment, _ = readCleanString(br)
 
 	return nil
 }
@@ -377,7 +377,7 @@ func readCleanString(r *bufio.Reader) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	
+
 	return strings.Trim(strings.TrimSpace(s), extraTrimChars), nil
 }
 

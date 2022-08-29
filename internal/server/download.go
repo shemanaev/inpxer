@@ -78,11 +78,11 @@ func (h *DownloadHandler) Download(w http.ResponseWriter, r *http.Request) {
 
 func (h *DownloadHandler) DownloadConverted(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
-	ext := strings.ToLower(chi.URLParam(r, "ext"))
+	ext := chi.URLParam(r, "ext")
 
 	var converter *config.Converter
 	for _, c := range h.cfg.Converters {
-		if strings.ToLower(c.To) == ext {
+		if strings.EqualFold(c.To, ext) {
 			converter = c
 			break
 		}

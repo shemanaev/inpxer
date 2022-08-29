@@ -72,7 +72,9 @@ func (h *WebHandler) Home(w http.ResponseWriter, r *http.Request) {
 		T:     h.localizer,
 		Title: h.cfg.Title,
 	}
-	h.indexTpl.Execute(w, args)
+	if err := h.indexTpl.Execute(w, args); err != nil {
+		internalServerError(w)
+	}
 }
 
 func (h *WebHandler) Search(w http.ResponseWriter, r *http.Request) {
@@ -138,5 +140,7 @@ func (h *WebHandler) Search(w http.ResponseWriter, r *http.Request) {
 		Results:    stats,
 		Hits:       top.Hits,
 	}
-	h.searchTpl.Execute(w, args)
+	if err := h.searchTpl.Execute(w, args); err != nil {
+		internalServerError(w)
+	}
 }

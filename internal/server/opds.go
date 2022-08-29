@@ -139,7 +139,7 @@ func (h *OpdsHandler) Search(w http.ResponseWriter, r *http.Request) {
 		})
 
 		for _, converter := range h.cfg.Converters {
-			if strings.ToLower(converter.From) == strings.ToLower(book.Ext) {
+			if strings.EqualFold(converter.From, book.Ext) {
 				entry.Link = append(entry.Link, opds.Link{
 					Rel:  opds.LinkRelAcquisition,
 					Type: mime.TypeByExtension("." + converter.To),

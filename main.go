@@ -13,8 +13,15 @@ import (
 	"github.com/shemanaev/inpxer/internal/server"
 )
 
-// TODO: set version at build
-const Version = "0.1"
+var (
+	version = "dev"
+)
+
+type key int
+
+const (
+	contextConfig key = iota
+)
 
 func main() {
 	cfg, err := config.Load()
@@ -23,7 +30,7 @@ func main() {
 	}
 
 	app := &cli.App{
-		Version: Version,
+		Version: version,
 		Commands: []*cli.Command{
 			{
 				Name:    "serve",
@@ -45,7 +52,7 @@ func main() {
 			},
 		},
 		Before: func(ctx *cli.Context) error {
-			ctx.Context = context.WithValue(ctx.Context, "config", cfg)
+			ctx.Context = context.WithValue(ctx.Context, contextConfig, cfg)
 			return nil
 		},
 	}
@@ -56,13 +63,13 @@ func main() {
 }
 
 func importAction(ctx *cli.Context) error {
-	cfg := ctx.Context.Value("config").(*config.MyConfig)
+	cfg := ctx.Context.Value(contextConfig).(*config.MyConfig)
 	fmt.Println("Starting import from:", ctx.Args().First())
 	return indexer.Run(cfg, ctx.Args().First(), ctx.Bool("keep-deleted"))
 }
 
 func serveAction(ctx *cli.Context) error {
-	cfg := ctx.Context.Value("config").(*config.MyConfig)
+	cfg := ctx.Context.Value(contextConfig).(*config.MyConfig)
 	fmt.Printf("Starting web server on: http://%s\n", cfg.Listen)
 	return server.Run(cfg)
 }
