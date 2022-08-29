@@ -14,6 +14,8 @@ Import data:
 ./inpxer import ./file.inpx
 ```
 
+*Note: existing index will be deleted.*
+
 Start server:
 ```shell
 ./inpxer serve
@@ -32,6 +34,8 @@ Import data:
 ```shell
 docker run --rm -it -v ${PWD}:/import -v <path to data storage>:/data shemanaev/inpxer inpxer import /import/file.inpx
 ```
+
+*Note: existing index will be deleted.*
 
 Start server:
 ```shell
