@@ -2,7 +2,6 @@ package model
 
 import (
 	"fmt"
-	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
@@ -69,7 +68,7 @@ func NewBook(book *inpx.Book) *Book {
 		Series:       series,
 		GenresStored: genres,
 		SeriesNo:     book.SeriesNo,
-		Folder:       filepath.ToSlash(book.File.Folder),
+		Folder:       ToSlash(book.File.Folder),
 		File:         book.File.Name,
 		Ext:          book.File.Ext,
 		Archive:      book.File.Archive,
@@ -77,4 +76,8 @@ func NewBook(book *inpx.Book) *Book {
 		PubDate:      book.PublishedDate,
 		Language:     book.Language,
 	}
+}
+
+func ToSlash(path string) string {
+	return strings.ReplaceAll(path, "\\", "/")
 }
