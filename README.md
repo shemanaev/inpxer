@@ -30,10 +30,10 @@ inpxer expects config file to be at `/data/inpxer.toml`.
 
 Import data:
 ```shell
-docker run --rm -it -v ${PWD}:/import -v <path to data storage>:/data inpxer inpxer import /import/file.inpx
+docker run --rm -it -v ${PWD}:/import -v <path to data storage>:/data shemanaev/inpxer inpxer import /import/file.inpx
 ```
 
 Start server:
 ```shell
-docker run -it -p 8080:8080 -v <path to data storage>:/data inpxer
+docker run -it -p 8080:8080 -v <path to data storage>:/data shemanaev/inpxer
 ```
