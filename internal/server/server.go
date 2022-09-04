@@ -3,6 +3,7 @@ package server
 import (
 	"mime"
 	"net/http"
+	"time"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -14,6 +15,8 @@ import (
 )
 
 const PageSize = 10
+
+var BuildDate = time.Now()
 
 func init() {
 	_ = mime.AddExtensionType(".azw", "application/vnd.amazon.ebook")
@@ -40,8 +43,13 @@ func Run(cfg *config.MyConfig) error {
 		return cli.Exit(err.Error(), 1)
 	}
 
-	fs := http.FileServer(http.FS(ui.StaticFiles))
-	r.Handle("/static/*", fs)
+	fs := http.FileServer(
+		&ui.StaticFSWrapper{
+			FileSystem:   http.FS(ui.StaticFiles),
+			FixedModTime: BuildDate,
+		},
+	)
+	r.Handle("/static/*", ui.CacheControlWrapper(fs))
 
 	web := NewWebHandler(cfg, t)
 	r.Get("/", web.Home)

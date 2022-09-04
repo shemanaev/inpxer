@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/urfave/cli/v2"
 
@@ -15,6 +16,7 @@ import (
 
 var (
 	version = "dev"
+	date    = "unknown"
 )
 
 type key int
@@ -48,6 +50,10 @@ func main() {
 				},
 			},
 		},
+	}
+
+	if buildDate, err := time.Parse(time.RFC3339, date); err == nil {
+		server.BuildDate = buildDate
 	}
 
 	if err := app.Run(os.Args); err != nil {
