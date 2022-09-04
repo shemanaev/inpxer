@@ -115,8 +115,8 @@ github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO
 github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8/go.mod h1:VFNgLljTbGfSG7qAOspJ7OScBnGdDN/yBr0sguwnwf0=
 github.com/urfave/cli/v2 v2.11.2 h1:FVfNg4m3vbjbBpLYxW//WjxUoHvJ9TlppXcqY9Q9ZfA=
 github.com/urfave/cli/v2 v2.11.2/go.mod h1:f8iq5LtQ/bLxafbdBSLPPNsgaW0l/2fYYEHhAyPlwvo=
-github.com/vorlif/spreak v0.3.3 h1:wjjC+N+/tLnG8C/kQYZ/tKkWmHPNXOZuKz2vDepq2xw=
-github.com/vorlif/spreak v0.3.3/go.mod h1:udvvlcE9uJVZnh4N6+ZBxwMBGFhV9sNXszuhg0GRZr0=
+github.com/vorlif/spreak v0.3.4 h1:Pk/3hHlvz3EeGEOBrM4fgFSta16wk6g6PAwDblnbefU=
+github.com/vorlif/spreak v0.3.4/go.mod h1:g0U9dCxMm8Ek86vT5kkw0gKIdWWplvlh5U2CQC3hpmw=
 github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77/go.mod h1:aYKd//L2LvnjZzWKhF00oedf4jCCReLcmhLdhm1A27Q=
 github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 h1:bAn7/zixMGCfxrRTfdpNzjtPYqr8smhKouy9mxVdGPU=
 github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673/go.mod h1:N3UwUGtsrSj3ccvlPHLoLsHnpR27oXr4ZE984MbSER8=

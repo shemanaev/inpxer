@@ -10,7 +10,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.0.5
 	github.com/stretchr/testify v1.8.0
 	github.com/urfave/cli/v2 v2.11.2
-	github.com/vorlif/spreak v0.3.3
+	github.com/vorlif/spreak v0.3.4
 	golang.org/x/text v0.3.7
 )
 

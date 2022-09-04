@@ -857,3 +857,30 @@ msgstr "Попаданцы"
 
 msgid "russian_fantasy"
 msgstr "Славянское фэнтези"
+
+msgid "foreign_prose"
+msgstr "Зарубежная классическая проза"
+
+msgid "literature_18"
+msgstr "Классическая проза XVII-XVIII веков"
+
+msgid "literature_19"
+msgstr "Классическая проза ХIX века"
+
+msgid "literature_20"
+msgstr "Классическая проза ХX века"
+
+msgid "tbg_computers"
+msgstr "Учебные пособия, самоучители"
+
+msgid "economics_ref"
+msgstr "Деловая литература"
+
+msgid "tbg_higher"
+msgstr "Учебники и пособия ВУЗов"
+
+msgid "tbg_secondary"
+msgstr "Учебники и пособия для среднего и специального образования"
+
+msgid "sci_theories"
+msgstr "Альтернативные науки и научные теории"

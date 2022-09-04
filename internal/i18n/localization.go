@@ -17,14 +17,13 @@ const (
 var localeFiles embed.FS
 
 func GetLocalizer(lang string) (*spreak.Localizer, error) {
-	files, _ := fs.Sub(localeFiles, "locale/inpxer")
-	files2, _ := fs.Sub(localeFiles, "locale/genres")
-	
+	files, _ := fs.Sub(localeFiles, "locale")
+
 	bundle, err := spreak.NewBundle(
 		//spreak.WithSourceLanguage(language.English), // this will break genres loading in english
 		spreak.WithDefaultDomain(DefaultDomain),
 		spreak.WithDomainFs(DefaultDomain, files),
-		spreak.WithDomainFs(GenresDomain, files2),
+		spreak.WithDomainFs(GenresDomain, files),
 		spreak.WithLanguage(language.English, language.Russian),
 	)
 	if err != nil {
