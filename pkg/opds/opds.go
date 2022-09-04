@@ -45,8 +45,8 @@ type Feed struct {
 	Author  *Author    `xml:"author,omitempty"`
 	Entry   []*Entry   `xml:"entry"`
 
-	TotalResults int `xml:"os:totalResults,omitempty"`
-	ItemsPerPage int `xml:"os:itemsPerPage,omitempty"`
+	TotalResults uint64 `xml:"os:totalResults,omitempty"`
+	ItemsPerPage int    `xml:"os:itemsPerPage,omitempty"`
 }
 
 type Entry struct {

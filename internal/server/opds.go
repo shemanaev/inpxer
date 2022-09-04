@@ -62,7 +62,7 @@ func (h *OpdsHandler) Root(w http.ResponseWriter, r *http.Request) {
 		&entry,
 	}
 
-	h.serveFeed(w, r, "root", entries, nil)
+	h.serveFeed(w, r, "root", entries, nil, 0)
 }
 
 func (h *OpdsHandler) Search(w http.ResponseWriter, r *http.Request) {
@@ -188,16 +188,18 @@ func (h *OpdsHandler) Search(w http.ResponseWriter, r *http.Request) {
 		})
 	}
 
-	h.serveFeed(w, r, "search", entries, links)
+	h.serveFeed(w, r, "search", entries, links, top.Total)
 }
 
-func (h *OpdsHandler) serveFeed(w http.ResponseWriter, r *http.Request, id string, entries []*opds.Entry, links []opds.Link) {
+func (h *OpdsHandler) serveFeed(w http.ResponseWriter, r *http.Request, id string, entries []*opds.Entry, links []opds.Link, totalResults uint64) {
 	now := time.Now()
 	feed := opds.NewFeed()
 	feed.ID = id
 	feed.Title = h.cfg.Title
 	feed.Updated = &now
 	feed.Entry = entries
+	feed.ItemsPerPage = PageSize
+	feed.TotalResults = totalResults
 
 	navLinks := []opds.Link{
 		{
