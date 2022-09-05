@@ -2,6 +2,7 @@ package model
 
 import (
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -9,51 +10,48 @@ import (
 	"github.com/shemanaev/inpxer/pkg/inpx"
 )
 
-type Book struct {
-	LibId        string
-	Title        string
-	Authors      string
-	GenresStored string
-	Series       string
-	SeriesNo     int
-	Folder       string
-	File         string
-	Ext          string
-	Archive      string
-	Size         int
-	PubDate      time.Time
-	Language     string
+var cleanTitleRe *regexp.Regexp
+
+func init() {
+	cleanTitleRe = regexp.MustCompile(`\[.+]`)
 }
 
-func (b *Book) BleveType() string {
-	return "book"
+type Author struct {
+	LastName   string
+	FirstName  string
+	MiddleName string
+}
+
+type File struct {
+	Name    string
+	Size    int
+	Ext     string
+	Folder  string
+	Archive string
+}
+
+type Book struct {
+	LibId    string
+	Title    string
+	Authors  []Author
+	Genres   []string
+	Series   string
+	SeriesNo int
+	File     File
+	PubDate  time.Time
+	Language string
 }
 
 var seriesSuffixes = []string{"[a]", "[p]", "[m]"}
 
 func NewBook(book *inpx.Book) *Book {
-	authors := ""
+	var authors []Author
 	for _, a := range book.Authors {
-		var name string
-		if a.FirstName == "" && a.MiddleName == "" {
-			name = a.LastName
-		} else if a.MiddleName == "" {
-			name = fmt.Sprintf("%s %s", a.FirstName, a.LastName)
-		} else {
-			name = fmt.Sprintf("%s %s %s", a.FirstName, a.MiddleName, a.LastName)
-		}
-		authors = authors + name + ","
-	}
-	if len(authors) > 0 {
-		authors = authors[:len(authors)-1]
-	}
-
-	genres := ""
-	for _, g := range book.Genres {
-		genres = genres + g + ":"
-	}
-	if len(genres) > 0 {
-		genres = genres[:len(genres)-1]
+		authors = append(authors, Author{
+			LastName:   a.LastName,
+			FirstName:  a.FirstName,
+			MiddleName: a.MiddleName,
+		})
 	}
 
 	series := book.Series
@@ -62,20 +60,67 @@ func NewBook(book *inpx.Book) *Book {
 	}
 
 	return &Book{
-		LibId:        strconv.Itoa(book.LibId),
-		Title:        book.Title,
-		Authors:      authors,
-		Series:       series,
-		GenresStored: genres,
-		SeriesNo:     book.SeriesNo,
-		Folder:       ToSlash(book.File.Folder),
-		File:         book.File.Name,
-		Ext:          book.File.Ext,
-		Archive:      book.File.Archive,
-		Size:         book.File.Size,
-		PubDate:      book.PublishedDate,
-		Language:     book.Language,
+		LibId:    strconv.Itoa(book.LibId),
+		Title:    book.Title,
+		Authors:  authors,
+		Genres:   book.Genres,
+		Series:   series,
+		SeriesNo: book.SeriesNo,
+		File: File{
+			Name:    book.File.Name,
+			Size:    book.File.Size,
+			Ext:     book.File.Ext,
+			Folder:  ToSlash(book.File.Folder),
+			Archive: book.File.Archive,
+		},
+		PubDate:  book.PublishedDate,
+		Language: book.Language,
 	}
+}
+
+func (b *Book) CleanTitle() string {
+	return cleanTitleRe.ReplaceAllString(b.Title, "")
+}
+
+func (b *Book) PubYear() string {
+	return strconv.Itoa(b.PubDate.Year())
+}
+
+func (a Author) String() string {
+	var name string
+	if a.FirstName == "" && a.MiddleName == "" {
+		name = a.LastName
+	} else if a.MiddleName == "" {
+		name = fmt.Sprintf("%s %s", a.FirstName, a.LastName)
+	} else {
+		name = fmt.Sprintf("%s %s %s", a.FirstName, a.MiddleName, a.LastName)
+	}
+
+	return name
+}
+
+func (a Author) Short() string {
+	var name string
+	if a.FirstName == "" {
+		name = a.LastName
+	} else {
+		name = fmt.Sprintf("%s %s", a.FirstName, a.LastName)
+	}
+
+	return name
+}
+
+func (a Author) Initials() string {
+	var name string
+	if a.FirstName == "" && a.MiddleName == "" {
+		name = a.LastName
+	} else if a.MiddleName == "" {
+		name = fmt.Sprintf("%s. %s", string([]rune(a.FirstName)[0:1]), a.LastName)
+	} else {
+		name = fmt.Sprintf("%s. %s. %s", string([]rune(a.FirstName)[0:1]), string([]rune(a.MiddleName)[0:1]), a.LastName)
+	}
+
+	return name
 }
 
 func ToSlash(path string) string {

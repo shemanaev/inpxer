@@ -10,8 +10,8 @@ import (
 	"github.com/vorlif/spreak"
 
 	"github.com/shemanaev/inpxer/internal/config"
+	"github.com/shemanaev/inpxer/internal/db"
 	"github.com/shemanaev/inpxer/internal/model"
-	"github.com/shemanaev/inpxer/internal/storage"
 	"github.com/shemanaev/inpxer/ui"
 )
 
@@ -45,7 +45,7 @@ type arguments struct {
 	Field      string
 	Paginator  pagination
 	Results    resultStats
-	Hits       []*model.BookView
+	Hits       []*model.Book
 }
 
 func NewWebHandler(cfg *config.MyConfig, localizer *spreak.Localizer) *WebHandler {
@@ -85,7 +85,7 @@ func (h *WebHandler) Search(w http.ResponseWriter, r *http.Request) {
 		page = 0
 	}
 
-	index, err := storage.Open(h.cfg.IndexPath, h.cfg.Language, false)
+	index, err := db.Open(h.cfg.IndexPath)
 	if err != nil {
 		log.Printf("Error opening index: %v", err)
 		internalServerError(w)

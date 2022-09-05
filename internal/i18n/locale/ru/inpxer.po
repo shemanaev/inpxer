@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-27 23:07+0300\n"
-"PO-Revision-Date: 2022-08-27 23:10+0300\n"
+"POT-Creation-Date: 2022-09-05 11:47+0300\n"
+"PO-Revision-Date: 2022-09-05 11:48+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -54,6 +54,11 @@ msgstr "серия"
 msgid "genres"
 msgstr "жанры"
 
-#: ../../server/opds_handler.go:114
+#: ../../server/opds.go:187
+#, go-format
+msgid "Original title: %s"
+msgstr "Оригинальное название: %s"
+
+#: ../../server/opds.go:195
 msgid "Search books by %s"
 msgstr "Искать книги автора %s"

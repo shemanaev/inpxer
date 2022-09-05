@@ -12,8 +12,8 @@ import (
 	"github.com/urfave/cli/v2"
 
 	"github.com/shemanaev/inpxer/internal/config"
+	"github.com/shemanaev/inpxer/internal/db"
 	"github.com/shemanaev/inpxer/internal/model"
-	"github.com/shemanaev/inpxer/internal/storage"
 	"github.com/shemanaev/inpxer/pkg/inpx"
 )
 
@@ -37,7 +37,7 @@ func Run(cfg *config.MyConfig, filename string, keepDeleted bool) error {
 		}
 	}
 
-	idx, err := storage.Open(cfg.IndexPath, cfg.Language, true)
+	idx, err := db.Create(cfg.IndexPath, cfg.Language)
 	if err != nil {
 		log.Printf("Error opening or creating index: %s", cfg.IndexPath)
 		return cli.Exit(err.Error(), 1)
@@ -64,17 +64,16 @@ func Run(cfg *config.MyConfig, filename string, keepDeleted bool) error {
 			continue
 		}
 
-		books = append(books, model.NewBook(book))
-
 		_, exist := duplicates[book.LibId]
 		if exist {
 			duplicates[book.LibId] += 1
 		} else {
 			duplicates[book.LibId] = 1
+			books = append(books, model.NewBook(book))
 		}
 
 		if len(books) > batchSize {
-			err := idx.Add(books)
+			err := idx.AddBooks(books)
 			if err != nil {
 				s.Error()
 				return cli.Exit(err.Error(), 1)
@@ -85,7 +84,7 @@ func Run(cfg *config.MyConfig, filename string, keepDeleted bool) error {
 	}
 
 	if len(books) > 0 {
-		err := idx.Add(books)
+		err := idx.AddBooks(books)
 		if err != nil {
 			s.Error()
 			return cli.Exit(err.Error(), 1)

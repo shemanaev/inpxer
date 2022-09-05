@@ -6,11 +6,10 @@ import (
 )
 
 func internalServerError(w http.ResponseWriter) {
-	w.WriteHeader(http.StatusInternalServerError)
-	fmt.Fprintln(w, "Internal server error")
+	http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 }
 
 func notFound(w http.ResponseWriter, id string) {
-	w.WriteHeader(http.StatusNotFound)
-	fmt.Fprintf(w, "File with id %s not found\n", id)
+	msg := fmt.Sprintf("File with id %s not found", id)
+	http.Error(w, msg, http.StatusNotFound)
 }

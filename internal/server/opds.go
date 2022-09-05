@@ -16,8 +16,9 @@ import (
 	"github.com/vorlif/spreak"
 
 	"github.com/shemanaev/inpxer/internal/config"
+	"github.com/shemanaev/inpxer/internal/db"
 	"github.com/shemanaev/inpxer/internal/i18n"
-	"github.com/shemanaev/inpxer/internal/storage"
+	"github.com/shemanaev/inpxer/internal/model"
 	"github.com/shemanaev/inpxer/pkg/opds"
 )
 
@@ -47,22 +48,25 @@ func (h *OpdsHandler) OpenSearchDescription(w http.ResponseWriter, r *http.Reque
 }
 
 func (h *OpdsHandler) Root(w http.ResponseWriter, r *http.Request) {
-	entry := opds.Entry{}
-	entry.Title = "Only search is supported"
-	entry.ID = "root:dummy"
-	entry.Content = opds.NewText("Dummy link")
-	entry.Link = []opds.Link{
-		{
-			Href: "/opds",
-			Type: opds.LinkTypeAcquisition,
-		},
+	index, err := db.Open(h.cfg.IndexPath)
+	if err != nil {
+		log.Printf("Error opening index: %v", err)
+		internalServerError(w)
+		return
+	}
+	defer index.Close()
+
+	books, err := index.GetMostRecentBooks(PageSize)
+	if err != nil {
+		log.Printf("Error retrieving recent books: %v", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		fmt.Fprintln(w, "Internal server error")
+		return
 	}
 
-	entries := []*opds.Entry{
-		&entry,
-	}
+	entries := h.makeBooksList(books)
 
-	h.serveFeed(w, r, "root", entries, nil, 0)
+	h.serveFeed(w, r, "root", entries, nil, uint64(len(books)))
 }
 
 func (h *OpdsHandler) Search(w http.ResponseWriter, r *http.Request) {
@@ -77,7 +81,7 @@ func (h *OpdsHandler) Search(w http.ResponseWriter, r *http.Request) {
 		page = 0
 	}
 
-	index, err := storage.Open(h.cfg.IndexPath, h.cfg.Language, false)
+	index, err := db.Open(h.cfg.IndexPath)
 	if err != nil {
 		log.Printf("Error opening index: %v", err)
 		internalServerError(w)
@@ -87,70 +91,13 @@ func (h *OpdsHandler) Search(w http.ResponseWriter, r *http.Request) {
 
 	top, err := index.SearchByField(field, q, page, PageSize)
 	if err != nil {
-		log.Printf("Error searching: %v", err.Error())
+		log.Printf("Error searching: %v", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Fprintln(w, "Internal server error")
 		return
 	}
 
-	entries := make([]*opds.Entry, 0)
-	for _, book := range top.Hits {
-		//issued, _ := time.Parse("2006", book.PubDate)
-		entry := &opds.Entry{
-			ID:       fmt.Sprintf("book:%s", book.LibId),
-			Title:    book.Title,
-			Issued:   &book.PubDate,
-			Language: book.Language,
-		}
-
-		for _, author := range book.Authors {
-			if author == "" {
-				continue
-			}
-
-			entry.Author = append(entry.Author, opds.Author{Name: author})
-			entry.Link = append(entry.Link, opds.Link{
-				Rel:   opds.LinkRelRelated,
-				Type:  opds.LinkTypeNavigation,
-				Href:  "/opds/search?q=" + url.QueryEscape(author),
-				Title: h.t.Getf("Search books by %s", author),
-			})
-		}
-
-		for _, genre := range book.Genres {
-			cat := h.t.DGet(i18n.GenresDomain, genre)
-			entry.Category = append(entry.Category, opds.Category{
-				Term:  cat,
-				Label: cat,
-			})
-		}
-
-		var fileMime string
-		if strings.HasSuffix(book.File, ".fb2.zip") {
-			fileMime = mime.TypeByExtension(".fb2.zip")
-		} else {
-			fileMime = mime.TypeByExtension("." + book.Ext)
-		}
-
-		entry.Link = append(entry.Link, opds.Link{
-			Rel:  opds.LinkRelAcquisition,
-			Type: fileMime,
-			Href: fmt.Sprintf("/download/%s", book.LibId),
-		})
-
-		for _, converter := range h.cfg.Converters {
-			if strings.EqualFold(converter.From, book.Ext) {
-				entry.Link = append(entry.Link, opds.Link{
-					Rel:  opds.LinkRelAcquisition,
-					Type: mime.TypeByExtension("." + converter.To),
-					Href: fmt.Sprintf("/download/%s/%s", book.LibId, converter.To),
-				})
-			}
-		}
-
-		entries = append(entries, entry)
-	}
-
+	entries := h.makeBooksList(top.Hits)
 	totalPages := int(math.Ceil(float64(top.Total) / float64(PageSize)))
 
 	var links []opds.Link
@@ -212,6 +159,11 @@ func (h *OpdsHandler) serveFeed(w http.ResponseWriter, r *http.Request, id strin
 			Type: opds.LinkTypeOpenSearch,
 			Href: "/opensearch.xml",
 		},
+		{
+			Rel:  opds.LinkRelSearch,
+			Type: opds.ContentType,
+			Href: "/opds/search?q={searchTerms}",
+		},
 	}
 
 	feed.Link = append(feed.Link, navLinks...)
@@ -221,4 +173,62 @@ func (h *OpdsHandler) serveFeed(w http.ResponseWriter, r *http.Request, id strin
 	w.Header().Add("Content-Type", opds.ContentType)
 	content = append([]byte(xml.Header), content...)
 	http.ServeContent(w, r, "feed.xml", time.Now(), bytes.NewReader(content))
+}
+
+func (h *OpdsHandler) makeBooksList(books []*model.Book) []*opds.Entry {
+	entries := make([]*opds.Entry, 0)
+	for _, book := range books {
+		entry := &opds.Entry{
+			ID:       fmt.Sprintf("book:%s", book.LibId),
+			Title:    book.CleanTitle(),
+			Issued:   &book.PubDate,
+			Language: book.Language,
+		}
+		entry.Content = opds.NewText(h.t.Getf("Original title: %s", book.Title))
+
+		for _, author := range book.Authors {
+			entry.Author = append(entry.Author, opds.Author{Name: author.Short()})
+			entry.Link = append(entry.Link, opds.Link{
+				Rel:   opds.LinkRelRelated,
+				Type:  opds.LinkTypeNavigation,
+				Href:  "/opds/search?q=" + url.QueryEscape(author.String()),
+				Title: h.t.Getf("Search books by %s", author.Short()),
+			})
+		}
+
+		for _, genre := range book.Genres {
+			cat := h.t.DGet(i18n.GenresDomain, genre)
+			entry.Category = append(entry.Category, opds.Category{
+				Term:  cat,
+				Label: cat,
+			})
+		}
+
+		var fileMime string
+		if strings.HasSuffix(book.File.Name, ".fb2.zip") {
+			fileMime = mime.TypeByExtension(".fb2.zip")
+		} else {
+			fileMime = mime.TypeByExtension("." + book.File.Ext)
+		}
+
+		entry.Link = append(entry.Link, opds.Link{
+			Rel:  opds.LinkRelAcquisition,
+			Type: fileMime,
+			Href: fmt.Sprintf("/download/%s", book.LibId),
+		})
+
+		for _, converter := range h.cfg.Converters {
+			if strings.EqualFold(converter.From, book.File.Ext) {
+				entry.Link = append(entry.Link, opds.Link{
+					Rel:  opds.LinkRelAcquisition,
+					Type: mime.TypeByExtension("." + converter.To),
+					Href: fmt.Sprintf("/download/%s/%s", book.LibId, converter.To),
+				})
+			}
+		}
+
+		entries = append(entries, entry)
+	}
+
+	return entries
 }

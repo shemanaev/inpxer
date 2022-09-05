@@ -15,7 +15,7 @@
                         <div class="columns is-gapless">
                             <div class="column is-9">
                                 <div class="content is-max-desktop">
-                                    <strong itemprop="name">{{.Title}}</strong> <em>({{.PubYear}})</em>
+                                    <strong itemprop="name" title="{{.Title}}">{{.CleanTitle}}</strong> <em>({{.PubYear}})</em>
 
                                     {{if .Authors}}
                                         <div class="book-details-row">
@@ -23,7 +23,7 @@
                                             <span class="book-details-row--value">
                                               {{range .Authors}}
                                                   <a class="comma-separated" href="/search?q={{.}}&field=Authors"
-                                                     itemprop="author">{{.}}</a>
+                                                     itemprop="author" title="{{.}}">{{.Initials}}</a>
                                               {{end}}
                                             </span>
                                         </div>
@@ -53,12 +53,12 @@
                             <div class="column">
                                 <div class="buttons has-addons is-right">
                                     <a class="button is-primary is-outlined" aria-label="download" href="/download/{{.LibId}}">
-                                        <span>{{.Ext}}</span>
+                                        <span>{{.File.Ext}}</span>
                                         <span class="icon">
                                             <i class="fa-solid fa-download" aria-hidden="true"></i>
                                         </span>
                                     </a>
-                                    {{$ext := .Ext}}
+                                    {{$ext := .File.Ext}}
                                     {{$libId := .LibId}}
                                     {{range $conv := $.Converters}}
                                         {{if eq $conv.From $ext}}

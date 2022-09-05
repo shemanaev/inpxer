@@ -18,8 +18,8 @@ import (
 	"github.com/go-chi/chi/v5"
 
 	"github.com/shemanaev/inpxer/internal/config"
+	"github.com/shemanaev/inpxer/internal/db"
 	"github.com/shemanaev/inpxer/internal/model"
-	"github.com/shemanaev/inpxer/internal/storage"
 )
 
 type DownloadHandler struct {
@@ -35,7 +35,7 @@ func NewDownloadHandler(cfg *config.MyConfig) *DownloadHandler {
 func (h *DownloadHandler) Download(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 
-	index, err := storage.Open(h.cfg.IndexPath, h.cfg.Language, false)
+	index, err := db.Open(h.cfg.IndexPath)
 	if err != nil {
 		log.Printf("Error opening index: %v", err)
 		internalServerError(w)
@@ -43,22 +43,22 @@ func (h *DownloadHandler) Download(w http.ResponseWriter, r *http.Request) {
 	}
 	defer index.Close()
 
-	book, err := index.FindById(id)
+	book, err := index.GetBookById(id)
 	if err != nil {
 		log.Printf("File with id: %s not found in index: %v", id, err)
 		notFound(w, id)
 		return
 	}
 
-	if book.Folder == "" {
+	if book.File.Folder == "" {
 		data, err := h.getFileFromArchive(book)
 		if err != nil {
 			notFound(w, id)
 			return
 		}
 
-		filename := fmt.Sprintf("%s.%s", book.File, book.Ext)
-		log.Printf("File `%s` for id %s served directly from archive (%s)", filename, id, book.Archive)
+		filename := fmt.Sprintf("%s.%s", book.File.Name, book.File.Ext)
+		log.Printf("File `%s` for id %s served directly from archive (%s)", filename, id, book.File.Archive)
 
 		addFilenameToHeader(w, book.Title, filename)
 		http.ServeContent(w, r, filename, time.Now(), bytes.NewReader(data))
@@ -71,7 +71,7 @@ func (h *DownloadHandler) Download(w http.ResponseWriter, r *http.Request) {
 
 		log.Printf("File `%s` for id %s served directly from fs", filename, id)
 
-		addFilenameToHeader(w, book.Title, book.File)
+		addFilenameToHeader(w, book.Title, book.File.Name)
 		http.ServeFile(w, r, filename)
 	}
 }
@@ -94,7 +94,7 @@ func (h *DownloadHandler) DownloadConverted(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
-	index, err := storage.Open(h.cfg.IndexPath, h.cfg.Language, false)
+	index, err := db.Open(h.cfg.IndexPath)
 	if err != nil {
 		log.Printf("Error opening index: %v", err)
 		internalServerError(w)
@@ -102,28 +102,28 @@ func (h *DownloadHandler) DownloadConverted(w http.ResponseWriter, r *http.Reque
 	}
 	defer index.Close()
 
-	book, err := index.FindById(id)
+	book, err := index.GetBookById(id)
 	if err != nil {
 		log.Printf("File with id: %s not found in index: %v", id, err)
 		notFound(w, id)
 		return
 	}
 
-	if strings.ToLower(book.Ext) != converter.From {
-		log.Printf("Wrong converter selected for id: %s. expected %s=>%s, got %s=>%s", id, book.Ext, ext, converter.From, converter.To)
+	if strings.ToLower(book.File.Ext) != converter.From {
+		log.Printf("Wrong converter selected for id: %s. expected %s=>%s, got %s=>%s", id, book.File.Ext, ext, converter.From, converter.To)
 		notFound(w, id)
 		return
 	}
 
 	var filename string
-	if book.Folder == "" {
+	if book.File.Folder == "" {
 		data, err := h.getFileFromArchive(book)
 		if err != nil {
 			notFound(w, id)
 			return
 		}
 
-		f, err := os.CreateTemp("", "book*."+book.Ext)
+		f, err := os.CreateTemp("", "book*."+book.File.Ext)
 		if err != nil {
 			log.Printf("Error creating temp file: %v", err)
 			notFound(w, id)
@@ -170,7 +170,7 @@ func (h *DownloadHandler) DownloadConverted(w http.ResponseWriter, r *http.Reque
 }
 
 func (h *DownloadHandler) getDirectFilePath(book *model.Book) (string, error) {
-	filename := filepath.Join(h.cfg.LibraryPath, filepath.FromSlash(book.Folder), book.File)
+	filename := filepath.Join(h.cfg.LibraryPath, filepath.FromSlash(book.File.Folder), book.File.Name)
 	if _, err := os.Stat(filename); errors.Is(err, os.ErrNotExist) {
 		log.Printf("File `%s` (id: %s) not found: %v", filename, book.LibId, err)
 		return "", err
@@ -180,7 +180,7 @@ func (h *DownloadHandler) getDirectFilePath(book *model.Book) (string, error) {
 }
 
 func (h *DownloadHandler) getFileFromArchive(book *model.Book) ([]byte, error) {
-	archivePath := filepath.Join(h.cfg.LibraryPath, book.Archive+".zip")
+	archivePath := filepath.Join(h.cfg.LibraryPath, book.File.Archive+".zip")
 	zf, err := zip.OpenReader(archivePath)
 	if err != nil {
 		log.Printf("Can't open archive `%s` (id: %s) not found: %v", archivePath, book.LibId, err)
@@ -188,7 +188,7 @@ func (h *DownloadHandler) getFileFromArchive(book *model.Book) ([]byte, error) {
 	}
 	defer zf.Close()
 
-	bookName := fmt.Sprintf("%s.%s", book.File, book.Ext)
+	bookName := fmt.Sprintf("%s.%s", book.File.Name, book.File.Ext)
 	for _, file := range zf.File {
 		if file.Name == bookName {
 			content, err := file.Open()

@@ -1,63 +1,37 @@
-package storage
+package blevefts
 
 import (
-	"fmt"
 	"log"
+	"time"
 
 	"github.com/blevesearch/bleve/v2"
 	"github.com/blevesearch/bleve/v2/analysis/lang/ru"
 	"github.com/blevesearch/bleve/v2/index/scorch"
 	"github.com/blevesearch/bleve/v2/index/upsidedown/store/boltdb"
 	"github.com/blevesearch/bleve/v2/mapping"
-	"github.com/mitchellh/mapstructure"
 
-	"github.com/shemanaev/inpxer/internal/model"
+	"github.com/shemanaev/inpxer/internal/fts"
 )
 
-var (
-	extractFieldsAll = []string{
-		"LibId",
-		"Title",
-		"Authors",
-		"GenresStored",
-		"Series",
-		"SeriesNo",
-		"Folder",
-		"File",
-		"Ext",
-		"Archive",
-		"Size",
-		"PubDate",
-		"Language",
-	}
-
-	extractFieldsDownload = []string{
-		"LibId",
-		"Title",
-		"Authors",
-		"Folder",
-		"File",
-		"Ext",
-		"Archive",
-	}
-)
-
-type SearchResult struct {
-	Total uint64
-	Hits  []*model.BookView
-}
-
-type BleveIndex struct {
+type Indexer struct {
 	index bleve.Index
 }
 
-func Open(path, language string, create bool) (*BleveIndex, error) {
+func Open(path string) (*Indexer, error) {
 	idx, err := bleve.Open(path)
 	if err != nil {
-		if !create {
-			return nil, err
-		}
+		return nil, err
+	}
 
+	res := Indexer{
+		index: idx,
+	}
+	return &res, nil
+}
+
+func Create(path, language string) (*Indexer, error) {
+	idx, err := bleve.Open(path)
+	if err != nil {
 		analyzer := getAnalyzer(language)
 		idx, err = bleve.NewUsing(path, createBookMapping(analyzer), scorch.Name, boltdb.Name, nil)
 		if err != nil {
@@ -65,17 +39,17 @@ func Open(path, language string, create bool) (*BleveIndex, error) {
 		}
 	}
 
-	res := BleveIndex{
+	res := Indexer{
 		index: idx,
 	}
 	return &res, nil
 }
 
-func (i *BleveIndex) Close() {
-	i.index.Close()
+func (i *Indexer) Close() error {
+	return i.index.Close()
 }
 
-func (i *BleveIndex) Add(books []*model.Book) error {
+func (i *Indexer) AddBooks(books []*fts.Book) error {
 	batch := i.index.NewBatch()
 	for _, book := range books {
 		err := batch.Index(book.LibId, book)
@@ -94,11 +68,10 @@ func (i *BleveIndex) Add(books []*model.Book) error {
 	return nil
 }
 
-func (i *BleveIndex) SearchByField(field string, s string, page int, pageSize int) (*SearchResult, error) {
+func (i *Indexer) SearchByField(field, s string, page, pageSize int) (*fts.SearchResult, error) {
 	query := bleve.NewMatchQuery(s)
 	query.SetField(field)
 	search := bleve.NewSearchRequestOptions(query, pageSize, page*pageSize, false)
-	search.Fields = extractFieldsAll
 
 	switch field {
 	case "Title":
@@ -114,83 +87,60 @@ func (i *BleveIndex) SearchByField(field string, s string, page int, pageSize in
 		return nil, err
 	}
 
-	books := make([]*model.BookView, 0)
+	var hitIds []string
 	for _, v := range searchResults.Hits {
-		var book model.Book
-		err := DecodeStruct(v.Fields, &book)
-		if err != nil {
-			return nil, err
-		}
-
-		books = append(books, model.NewBookView(&book))
+		hitIds = append(hitIds, v.ID)
 	}
 
-	res := SearchResult{
+	res := fts.SearchResult{
 		Total: searchResults.Total,
-		Hits:  books,
+		Hits:  hitIds,
 	}
 	return &res, nil
 }
 
-func (i *BleveIndex) FindById(id string) (*model.Book, error) {
-	query := bleve.NewTermQuery(id)
-	query.SetField("_id")
-	search := bleve.NewSearchRequest(query)
-	search.Fields = extractFieldsDownload
+func (i *Indexer) GetMostRecentBooks(count int) ([]string, error) {
+	t := time.Now()
+	p := t.AddDate(-1, 0, 0)
+	query := bleve.NewDateRangeQuery(p, t)
+	query.SetField("PubDate")
+	search := bleve.NewSearchRequestOptions(query, count, 0, false)
+	search.Fields = []string{}
+	search.SortBy([]string{"-PubDate"})
+
 	searchResults, err := i.index.Search(search)
 	if err != nil {
 		return nil, err
 	}
 
-	if searchResults.Total == 0 {
-		return nil, fmt.Errorf("book with id %s not found", id)
+	var hitIds []string
+	for _, v := range searchResults.Hits {
+		hitIds = append(hitIds, v.ID)
 	}
 
-	var book model.Book
-	err = mapstructure.Decode(searchResults.Hits[0].Fields, &book)
-	if err != nil {
-		return nil, err
-	}
-
-	return &book, nil
+	return hitIds, nil
 }
 
 func createBookMapping(analyzer string) *mapping.IndexMappingImpl {
 	bookMapping := bleve.NewDocumentMapping()
 
 	indexedText := bleve.NewTextFieldMapping()
+	indexedText.Store = false
 
 	bookMapping.AddFieldMappingsAt("Title", indexedText)
 	bookMapping.AddFieldMappingsAt("Authors", indexedText)
 	bookMapping.AddFieldMappingsAt("Series", indexedText)
 
-	storedText := bleve.NewTextFieldMapping()
-	storedText.IncludeInAll = false
-	storedText.Index = false
-	storedText.SkipFreqNorm = true
-	storedText.IncludeTermVectors = false
-
-	bookMapping.AddFieldMappingsAt("LibId", storedText)
-	bookMapping.AddFieldMappingsAt("GenresStored", storedText)
-	bookMapping.AddFieldMappingsAt("Folder", storedText)
-	bookMapping.AddFieldMappingsAt("File", storedText)
-	bookMapping.AddFieldMappingsAt("Ext", storedText)
-	bookMapping.AddFieldMappingsAt("Archive", storedText)
-	bookMapping.AddFieldMappingsAt("Language", storedText)
-
-	storedInt := bleve.NewNumericFieldMapping()
-	storedInt.IncludeInAll = false
-	storedInt.Index = false
-	storedInt.SkipFreqNorm = true
-	storedInt.IncludeTermVectors = false
-
-	bookMapping.AddFieldMappingsAt("Size", storedInt)
+	disabled := bleve.NewDocumentDisabledMapping()
+	bookMapping.AddSubDocumentMapping("LibId", disabled)
 
 	indexedInt := bleve.NewNumericFieldMapping()
+	indexedInt.Store = false
 	indexedInt.IncludeInAll = false
 	bookMapping.AddFieldMappingsAt("SeriesNo", indexedInt)
 
 	indexedDate := bleve.NewDateTimeFieldMapping()
+	indexedDate.Store = false
 	indexedDate.IncludeInAll = false
 	bookMapping.AddFieldMappingsAt("PubDate", indexedDate)
 
