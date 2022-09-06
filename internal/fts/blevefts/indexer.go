@@ -14,6 +14,7 @@ import (
 )
 
 type Indexer struct {
+	fts.Indexer
 	index bleve.Index
 }
 

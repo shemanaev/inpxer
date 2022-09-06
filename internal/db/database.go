@@ -4,7 +4,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/shemanaev/inpxer/internal/db/boltstore"
+	"github.com/shemanaev/inpxer/internal/db/badgerstore"
+	"github.com/shemanaev/inpxer/internal/db/storer"
 	"github.com/shemanaev/inpxer/internal/fts"
 	"github.com/shemanaev/inpxer/internal/fts/blevefts"
 	"github.com/shemanaev/inpxer/internal/model"
@@ -12,7 +13,7 @@ import (
 
 const (
 	blevePath = "bleve"
-	boltPath  = "bolt.db"
+	boltPath  = "badger"
 )
 
 type SearchResult struct {
@@ -21,8 +22,8 @@ type SearchResult struct {
 }
 
 type Store struct {
-	fts *blevefts.Indexer
-	db  *boltstore.Database
+	fts fts.Indexer
+	db  storer.BookStorer
 }
 
 func Open(path string) (*Store, error) {
@@ -31,7 +32,7 @@ func Open(path string) (*Store, error) {
 		return nil, err
 	}
 
-	data, err := boltstore.Open(filepath.Join(path, boltPath))
+	data, err := badgerstore.Open(filepath.Join(path, boltPath))
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +49,7 @@ func Create(path, language string) (*Store, error) {
 		return nil, err
 	}
 
-	data, err := boltstore.Open(filepath.Join(path, boltPath))
+	data, err := badgerstore.Open(filepath.Join(path, boltPath))
 	if err != nil {
 		return nil, err
 	}
