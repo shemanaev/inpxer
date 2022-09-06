@@ -13,7 +13,7 @@
                 {{range .Hits}}
                     <article class="book" itemtype="http://schema.org/Book">
                         <div class="columns is-gapless">
-                            <div class="column is-9">
+                            <div class="column is-10">
                                 <div class="content is-max-desktop">
                                     <strong itemprop="name" title="{{.Title}}">{{.CleanTitle}}</strong> <em>({{.PubYear}})</em>
 
@@ -50,19 +50,33 @@
                                 </div>
                             </div>
 
-                            <div class="column">
-                                <div class="buttons has-addons is-right">
-                                    <a class="button is-primary is-outlined" aria-label="download" href="/download/{{.LibId}}">
-                                        <span>{{.File.Ext}}</span>
-                                        <span class="icon">
-                                            <i class="fa-solid fa-download" aria-hidden="true"></i>
-                                        </span>
-                                    </a>
+                            <div class="column text-aligned-right">
+                                <div class="dropdown is-right">
+                                    <div class="dropdown-trigger buttons has-addons">
+                                        <a class="button is-primary is-outlined" aria-label="download" href="/download/{{.LibId}}">
+                                            <span>{{.File.Ext}}</span>
+                                            <span class="icon">
+                                                <i class="fa-solid fa-download" aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+
                                     {{$ext := .File.Ext}}
                                     {{$libId := .LibId}}
+                                    {{$firstConv := true}}
                                     {{range $conv := $.Converters}}
                                         {{if eq $conv.From $ext}}
-                                            <a class="button is-primary is-outlined" aria-label="download" href="/download/{{$libId}}/{{$conv.To}}">
+                                            {{if $firstConv}}
+                                                {{$firstConv = false}}
+                                        <button class="button is-primary is-outlined" aria-haspopup="true" aria-controls="dropdown-menu">
+                                            <span class="icon is-small">
+                                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="dropdown-menu" role="menu">
+                                        <div class="dropdown-content">
+                                            {{end}}
+                                            <a class="dropdown-item" aria-label="download" href="/download/{{$libId}}/{{$conv.To}}">
                                                 <span>{{$conv.To}}</span>
                                                 <span class="icon">
                                                     <i class="fa-solid fa-download" aria-hidden="true"></i>
@@ -70,6 +84,10 @@
                                             </a>
                                         {{end}}
                                     {{end}}
+                                    {{if not $firstConv}}
+                                        </div>
+                                    {{end}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -118,4 +136,36 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropdowns = document.querySelectorAll('.dropdown:not(.is-hoverable)');
+
+            if (dropdowns.length > 0) {
+                dropdowns.forEach(function(el) {
+                    el.addEventListener('click', function(e) {
+                        closeDropdowns();
+                        e.stopPropagation();
+                        el.classList.toggle('is-active');
+                    });
+                });
+
+                document.addEventListener('click', function(e) {
+                    closeDropdowns();
+                });
+            }
+
+            function closeDropdowns() {
+                dropdowns.forEach(function(el) {
+                    el.classList.remove('is-active');
+                });
+            }
+
+            document.addEventListener('keydown', function (event) {
+                let e = event || window.event;
+                if (e.key === 'Esc' || e.key === 'Escape') {
+                    closeDropdowns();
+                }
+            });
+        });
+    </script>
 {{end}}

@@ -40,3 +40,17 @@
         width: 4em;
     }
 }
+
+.text-aligned-right {
+    text-align: right;
+}
+
+/* Bulma fixes */
+.buttons:not(:last-child) {
+    margin-bottom: -0.375rem;
+}
+
+.dropdown > .dropdown-menu {
+    margin-top: -0.375rem;
+    min-width: auto;
+}
