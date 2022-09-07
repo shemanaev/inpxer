@@ -45,6 +45,19 @@
     text-align: right;
 }
 
+article.book .tag {
+    cursor: help;
+    font-weight: bold;
+}
+
+article.book .full-title {
+    display: none;
+}
+
+article.book .tag:hover + .full-title {
+    display: inline;
+}
+
 /* Bulma fixes */
 .buttons:not(:last-child) {
     margin-bottom: -0.375rem;

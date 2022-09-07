@@ -15,7 +15,12 @@
                         <div class="columns is-gapless">
                             <div class="column is-10">
                                 <div class="content is-max-desktop">
-                                    <strong itemprop="name" title="{{.Title}}">{{.CleanTitle}}</strong> <em>({{.PubYear}})</em>
+                                    <strong itemprop="name">{{.CleanTitle}}</strong>
+                                    <em>({{.PubYear}})</em>
+                                    {{if ne .Title .CleanTitle}}
+                                        <span class="tag">?</span>
+                                        <span class="full-title"><br>{{.Title}}</span>
+                                    {{end}}
 
                                     {{if .Authors}}
                                         <div class="book-details-row">
