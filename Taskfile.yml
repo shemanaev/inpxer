@@ -1,0 +1,12 @@
+version: '3'
+
+tasks:
+  test:
+    desc: Run tests.
+    cmds:
+      - go test -short ./...
+
+  localize:
+    desc: Extract localized strings.
+    cmds:
+      - xspreak -D ./ -o internal/i18n/locale/inpxer.pot -t "ui/templates/*.gohtml"
