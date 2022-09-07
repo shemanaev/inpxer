@@ -14,7 +14,8 @@ Import data:
 ./inpxer import ./file.inpx
 ```
 
-*Note: existing index will be deleted.*
+You can specify `--partial` flag to import only new records and keep old ones.
+Otherwise, old index data will be deleted and reindex from scratch.
 
 Start server:
 ```shell

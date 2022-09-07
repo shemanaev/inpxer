@@ -30,7 +30,7 @@ func (d *Database) Close() error {
 	return d.db.Close()
 }
 
-func (d *Database) AddBooks(books []*model.Book) error {
+func (d *Database) AddBooks(books []*model.Book, partial bool) error {
 	err := d.db.Update(func(tx *bolt.Tx) error {
 		b, err := tx.CreateBucketIfNotExists(BucketName)
 		if err != nil {
@@ -38,6 +38,12 @@ func (d *Database) AddBooks(books []*model.Book) error {
 		}
 
 		for _, v := range books {
+			if partial {
+				if exists := b.Get([]byte(v.LibId)); exists != nil {
+					continue
+				}
+			}
+
 			var buf bytes.Buffer
 			enc := gob.NewEncoder(&buf)
 			err := enc.Encode(v)

@@ -13,7 +13,7 @@ type Indexer interface {
 	Open(path string) (*Indexer, error)
 	Create(path, language string) (*Indexer, error)
 	Close() error
-	AddBooks(books []*Book) error
+	AddBooks(books []*Book, partial bool) error
 	SearchByField(field, s string, page, pageSize int) (*SearchResult, error)
 	GetMostRecentBooks(count int) ([]string, error)
 }

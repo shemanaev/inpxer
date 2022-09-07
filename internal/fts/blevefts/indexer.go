@@ -50,9 +50,15 @@ func (i *Indexer) Close() error {
 	return i.index.Close()
 }
 
-func (i *Indexer) AddBooks(books []*fts.Book) error {
+func (i *Indexer) AddBooks(books []*fts.Book, partial bool) error {
 	batch := i.index.NewBatch()
 	for _, book := range books {
+		if partial {
+			if _, err := i.index.Document(book.LibId); err == nil {
+				continue
+			}
+		}
+
 		err := batch.Index(book.LibId, book)
 		if err != nil {
 			log.Printf("Error index book %v, %v", book, err)

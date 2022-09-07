@@ -47,6 +47,10 @@ func main() {
 						Name:  "keep-deleted",
 						Usage: "Keep records marked as \"Deleted\" in inp",
 					},
+					&cli.BoolFlag{
+						Name:  "partial",
+						Usage: "Only add new records, never delete",
+					},
 				},
 			},
 		},
@@ -64,7 +68,7 @@ func main() {
 func importAction(ctx *cli.Context) error {
 	cfg := ctx.Context.Value(contextConfig).(*config.MyConfig)
 	fmt.Println("Starting import from:", ctx.Args().First())
-	return indexer.Run(cfg, ctx.Args().First(), ctx.Bool("keep-deleted"))
+	return indexer.Run(cfg, ctx.Args().First(), ctx.Bool("keep-deleted"), ctx.Bool("partial"))
 }
 
 func serveAction(ctx *cli.Context) error {

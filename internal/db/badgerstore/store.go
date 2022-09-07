@@ -35,9 +35,15 @@ func (d *Database) Close() error {
 	return d.db.Close()
 }
 
-func (d *Database) AddBooks(books []*model.Book) error {
+func (d *Database) AddBooks(books []*model.Book, partial bool) error {
 	err := d.db.Update(func(tx *badger.Txn) error {
 		for _, v := range books {
+			if partial {
+				if _, err := tx.Get([]byte(v.LibId)); err == nil {
+					continue
+				}
+			}
+
 			var buf bytes.Buffer
 			enc := gob.NewEncoder(&buf)
 			err := enc.Encode(v)

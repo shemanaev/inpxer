@@ -69,8 +69,8 @@ func (s *Store) Close() error {
 	return s.db.Close()
 }
 
-func (s *Store) AddBooks(books []*model.Book) error {
-	err := s.db.AddBooks(books)
+func (s *Store) AddBooks(books []*model.Book, partial bool) error {
+	err := s.db.AddBooks(books, partial)
 	if err != nil {
 		return err
 	}
@@ -79,7 +79,7 @@ func (s *Store) AddBooks(books []*model.Book) error {
 	for _, book := range books {
 		ftsBooks = append(ftsBooks, ftsBookFromModel(book))
 	}
-	err = s.fts.AddBooks(ftsBooks)
+	err = s.fts.AddBooks(ftsBooks, partial)
 	if err != nil {
 		return err
 	}

@@ -19,7 +19,7 @@ import (
 
 const batchSize = 1000
 
-func Run(cfg *config.MyConfig, filename string, keepDeleted bool) error {
+func Run(cfg *config.MyConfig, filename string, keepDeleted, partial bool) error {
 	collection, err := inpx.Open(filename)
 	if err != nil {
 		log.Printf("Error opening inpx: %s", filename)
@@ -27,13 +27,15 @@ func Run(cfg *config.MyConfig, filename string, keepDeleted bool) error {
 	}
 	defer collection.Close()
 
-	// Delete old index.
-	if _, err := os.Stat(cfg.IndexPath); !os.IsNotExist(err) {
-		log.Println("Deleting old index...")
-		err = os.RemoveAll(cfg.IndexPath)
-		if err != nil {
-			log.Printf("Error deleting old index: %s", cfg.IndexPath)
-			return cli.Exit(err.Error(), 1)
+	if !partial {
+		// Delete old index.
+		if _, err := os.Stat(cfg.IndexPath); !os.IsNotExist(err) {
+			log.Println("Deleting old index...")
+			err = os.RemoveAll(cfg.IndexPath)
+			if err != nil {
+				log.Printf("Error deleting old index: %s", cfg.IndexPath)
+				return cli.Exit(err.Error(), 1)
+			}
 		}
 	}
 
@@ -73,7 +75,7 @@ func Run(cfg *config.MyConfig, filename string, keepDeleted bool) error {
 		}
 
 		if len(books) > batchSize {
-			err := idx.AddBooks(books)
+			err := idx.AddBooks(books, partial)
 			if err != nil {
 				s.Error()
 				return cli.Exit(err.Error(), 1)
@@ -84,7 +86,7 @@ func Run(cfg *config.MyConfig, filename string, keepDeleted bool) error {
 	}
 
 	if len(books) > 0 {
-		err := idx.AddBooks(books)
+		err := idx.AddBooks(books, partial)
 		if err != nil {
 			s.Error()
 			return cli.Exit(err.Error(), 1)
