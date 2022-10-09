@@ -7,7 +7,7 @@ OPDS 1.1 and web server for `.inpx` libraries with full-text search.
 ### Standalone
 
 Download the latest release.
-Download [`inpxer-example.toml`](./inpxer-example.toml), rename to `inpxer.toml`, put near executable and edit to your liking.
+Download [`inpxer-example.toml`](./inpxer-example.toml), rename to `inpxer.toml`, put next to executable (or current working directory) and edit to your liking.
 
 Import data:
 ```shell

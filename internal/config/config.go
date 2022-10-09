@@ -2,9 +2,13 @@ package config
 
 import (
 	"os"
+	"path"
+	"path/filepath"
 
 	"github.com/pelletier/go-toml/v2"
 )
+
+const configFilename = "inpxer.toml"
 
 type MyConfig struct {
 	Language    string       `toml:"language"`
@@ -25,8 +29,15 @@ type Converter struct {
 
 func Load() (*MyConfig, error) {
 	configFiles := []string{
-		"inpxer.toml",
-		"/data/inpxer.toml",
+		configFilename,
+		path.Join("/data", configFilename),
+	}
+
+	exe, err := os.Executable()
+	if err == nil {
+		exePath := filepath.Dir(exe)
+		exeConf := filepath.Join(exePath, configFilename)
+		configFiles = append(configFiles, exeConf)
 	}
 
 	var configFile string
