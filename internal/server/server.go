@@ -23,7 +23,7 @@ func init() {
 	_ = mime.AddExtensionType(".azw3", "application/vnd.amazon.ebook")
 	_ = mime.AddExtensionType(".mobi", "application/x-mobipocket-ebook")
 	_ = mime.AddExtensionType(".epub", "application/epub+zip")
-	_ = mime.AddExtensionType(".fb2", "text/fb2+xml")
+	_ = mime.AddExtensionType(".fb2", "application/fb2")
 	_ = mime.AddExtensionType(".fb2.zip", "application/fb2+zip")
 	_ = mime.AddExtensionType(".cbz", "application/x-cbz")
 	_ = mime.AddExtensionType(".cbr", "application/x-cbr")
