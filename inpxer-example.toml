@@ -3,6 +3,8 @@ language = "en" # en, ru
 # title displayed on web and in OPDS catalog
 title = "My library"
 # where to store index
+# WARNING: keep in mind that this folder will be deleted during indexing,
+# don't point it to an existing location (and definitely don't set it equal to library_path)
 index_path = "/data/index"
 # where is you books stored
 library_path = "/data/library"
