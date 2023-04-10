@@ -15,7 +15,7 @@ Import data:
 ```
 
 You can specify `--partial` flag to import only new records and keep old ones.
-Otherwise, old index data will be deleted and reindex from scratch.
+Otherwise, old index data will be deleted (the whole folder specified in `index_path`) and reindex from scratch.
 
 Start server:
 ```shell
