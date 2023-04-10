@@ -11,13 +11,14 @@ import (
 const configFilename = "inpxer.toml"
 
 type MyConfig struct {
-	Language    string       `toml:"language"`
-	Title       string       `toml:"title"`
-	IndexPath   string       `toml:"index_path"`
-	LibraryPath string       `toml:"library_path"`
-	Listen      string       `toml:"listen"`
-	FullUrl     string       `toml:"full_url"`
-	Converters  []*Converter `toml:"converters"`
+	Language         string       `toml:"language"`
+	Title            string       `toml:"title"`
+	AuthorNameFormat string       `toml:"author_name_format"`
+	IndexPath        string       `toml:"index_path"`
+	LibraryPath      string       `toml:"library_path"`
+	Listen           string       `toml:"listen"`
+	FullUrl          string       `toml:"full_url"`
+	Converters       []*Converter `toml:"converters"`
 }
 
 type Converter struct {

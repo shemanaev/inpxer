@@ -38,14 +38,15 @@ type resultStats struct {
 }
 
 type arguments struct {
-	T          *spreak.Localizer
-	Converters []*config.Converter
-	Title      string
-	Query      string
-	Field      string
-	Paginator  pagination
-	Results    resultStats
-	Hits       []*model.Book
+	T                *spreak.Localizer
+	Converters       []*config.Converter
+	Title            string
+	AuthorNameFormat string
+	Query            string
+	Field            string
+	Paginator        pagination
+	Results          resultStats
+	Hits             []*model.Book
 }
 
 func NewWebHandler(cfg *config.MyConfig, localizer *spreak.Localizer) *WebHandler {
@@ -131,14 +132,15 @@ func (h *WebHandler) Search(w http.ResponseWriter, r *http.Request) {
 	}
 
 	args := arguments{
-		T:          h.localizer,
-		Converters: h.cfg.Converters,
-		Title:      h.cfg.Title,
-		Query:      q,
-		Field:      field,
-		Paginator:  paginator,
-		Results:    stats,
-		Hits:       top.Hits,
+		T:                h.localizer,
+		Converters:       h.cfg.Converters,
+		Title:            h.cfg.Title,
+		AuthorNameFormat: h.cfg.AuthorNameFormat,
+		Query:            q,
+		Field:            field,
+		Paginator:        paginator,
+		Results:          stats,
+		Hits:             top.Hits,
 	}
 	if err := h.searchTpl.Execute(w, args); err != nil {
 		internalServerError(w)

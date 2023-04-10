@@ -123,6 +123,17 @@ func (a Author) Initials() string {
 	return name
 }
 
+func (a Author) FormattedName(format string) string {
+	switch format {
+	case "initials":
+		return a.Initials()
+	case "full":
+		return a.String()
+	default:
+		return a.Short()
+	}
+}
+
 func ToSlash(path string) string {
 	return strings.ReplaceAll(path, "\\", "/")
 }

@@ -2,6 +2,11 @@
 language = "en" # en, ru
 # title displayed on web and in OPDS catalog
 title = "My library"
+# format for author's name. possible values:
+#  - short: Fyodor Dostoevsky
+#  - initials: F. M. Dostoevsky
+#  - full: Fyodor Mikhailovich Dostoevsky
+author_name_format = "short"
 # where to store index
 # WARNING: keep in mind that this folder will be deleted during indexing,
 # don't point it to an existing location (and definitely don't set it equal to library_path)

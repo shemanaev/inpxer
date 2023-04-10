@@ -187,12 +187,12 @@ func (h *OpdsHandler) makeBooksList(books []*model.Book) []*opds.Entry {
 		entry.Content = opds.NewText(h.t.Getf("Original title: %s", book.Title))
 
 		for _, author := range book.Authors {
-			entry.Author = append(entry.Author, opds.Author{Name: author.Short()})
+			entry.Author = append(entry.Author, opds.Author{Name: author.FormattedName(h.cfg.AuthorNameFormat)})
 			entry.Link = append(entry.Link, opds.Link{
 				Rel:   opds.LinkRelRelated,
 				Type:  opds.LinkTypeNavigation,
 				Href:  "/opds/search?q=" + url.QueryEscape(author.String()),
-				Title: h.t.Getf("Search books by %s", author.Short()),
+				Title: h.t.Getf("Search books by %s", author.FormattedName(h.cfg.AuthorNameFormat)),
 			})
 		}
 

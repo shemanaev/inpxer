@@ -28,7 +28,7 @@
                                             <span class="book-details-row--value">
                                               {{range .Authors}}
                                                   <a class="comma-separated" href="/search?q={{.}}&field=Authors"
-                                                     itemprop="author" title="{{.}}">{{.Initials}}</a>
+                                                     itemprop="author" title="{{.}}">{{.FormattedName $.AuthorNameFormat}}</a>
                                               {{end}}
                                             </span>
                                         </div>
