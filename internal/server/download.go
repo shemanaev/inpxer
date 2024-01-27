@@ -152,9 +152,16 @@ func (h *DownloadHandler) DownloadConverted(w http.ResponseWriter, r *http.Reque
 		}
 	}
 
-	outFilename := filepath.Join(os.TempDir(), book.LibId+"."+converter.To)
+	outDir := os.TempDir()
+	outFilename := filepath.Join(outDir, book.LibId+"."+converter.To)
+	if strings.Contains(converter.Arguments, "{to_dir}") {
+		baseFilename := filepath.Base(filename)
+		outFilename = filepath.Join(outDir, strings.TrimSuffix(baseFilename, filepath.Ext(baseFilename))+"."+converter.To)
+	}
+
 	args := strings.Replace(converter.Arguments, "{from}", filename, -1)
 	args = strings.Replace(args, "{to}", outFilename, -1)
+	args = strings.Replace(args, "{to_dir}", outDir, -1)
 	cmd := exec.Command(converter.Command, strings.Split(args, " ")...)
 
 	log.Printf("Waiting for converter to finish. %s %s", converter.Command, args)

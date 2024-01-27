@@ -26,5 +26,5 @@ full_url = "http://localhost:8080"
 #to = "epub"
 ## converter executable
 #command = "fb2epub"
-## converter arguments. {from} becomes source file path, {to} - output file path
+## converter arguments. {from} becomes source file path, {to} - output file path, {to_dir} - output directory (for fb2converter)
 #arguments = "{from} {to}"
