@@ -172,6 +172,7 @@ func (h *DownloadHandler) DownloadConverted(w http.ResponseWriter, r *http.Reque
 	}
 	defer os.Remove(outFilename)
 
+	log.Printf("Serving converted file from: %s", outFilename)
 	addFilenameToHeader(w, book.Title, book.LibId+"."+converter.To)
 	http.ServeFile(w, r, outFilename)
 }
@@ -216,6 +217,7 @@ func (h *DownloadHandler) getFileFromArchive(book *model.Book) ([]byte, error) {
 		}
 	}
 
+	log.Printf("File `%s` not found in archive `%s` (id: %s)", bookName, archivePath, book.LibId)
 	return nil, os.ErrNotExist
 }
 
