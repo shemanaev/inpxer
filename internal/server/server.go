@@ -31,7 +31,7 @@ func init() {
 	_ = mime.AddExtensionType(".djvu", "image/x-djvu")
 }
 
-func Run(cfg *config.MyConfig) error {
+func Run(cfg *config.MyConfig, isDevMode bool) error {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Use(middleware.CleanPath)
@@ -49,7 +49,11 @@ func Run(cfg *config.MyConfig) error {
 			FixedModTime: BuildDate,
 		},
 	)
-	r.Handle("/static/*", ui.CacheControlWrapper(fs))
+	if !isDevMode {
+		fs = ui.CacheControlWrapper(fs)
+	}
+
+	r.Handle("/static/*", fs)
 
 	web := NewWebHandler(cfg, t)
 	r.Get("/", web.Home)

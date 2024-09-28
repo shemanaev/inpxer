@@ -3,6 +3,7 @@
 Library for reading `.inpx` collection files.
 
 Example:
+
 ```go
 collection, err := inpx.Open("testdata/flibusta_fb2_local.inpx")
 if err != nil {
@@ -11,6 +12,6 @@ if err != nil {
 defer collection.Close()
 
 for book := range collection.Stream() {
-	fmt.Printf("%v\n", book)
+    fmt.Printf("%v\n", book)
 }
 ```
