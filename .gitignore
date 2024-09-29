@@ -21,3 +21,4 @@ dist/
 tmp/
 
 inpxer.toml
+conversion.log

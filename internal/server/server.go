@@ -31,12 +31,13 @@ func init() {
 	_ = mime.AddExtensionType(".djvu", "image/x-djvu")
 }
 
-func Run(cfg *config.MyConfig, isDevMode bool) error {
+func Run(cfg *config.MyConfig, isDevMode bool, version string) error {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Use(middleware.CleanPath)
 	r.Use(middleware.StripSlashes)
 	r.Use(middleware.Compress(5, "application/fb2"))
+	r.Use(middleware.SetHeader("Server", "inpxer/"+version))
 
 	t, err := i18n.GetLocalizer(cfg.Language)
 	if err != nil {

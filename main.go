@@ -22,8 +22,7 @@ var (
 type key int
 
 const (
-	contextConfig  key = iota
-	contextDevMode key = iota + 1
+	contextConfig key = iota
 )
 
 func main() {
@@ -74,9 +73,9 @@ func importAction(ctx *cli.Context) error {
 
 func serveAction(ctx *cli.Context) error {
 	cfg := ctx.Context.Value(contextConfig).(*config.MyConfig)
-	isDevMode := ctx.Context.Value(contextDevMode).(bool)
+	isDevMode := version == "dev"
 	fmt.Printf("Starting web server on: http://%s\n", cfg.Listen)
-	return server.Run(cfg, isDevMode)
+	return server.Run(cfg, isDevMode, version)
 }
 
 func loadConfig(ctx *cli.Context) error {
@@ -86,6 +85,5 @@ func loadConfig(ctx *cli.Context) error {
 	}
 
 	ctx.Context = context.WithValue(ctx.Context, contextConfig, cfg)
-	ctx.Context = context.WithValue(ctx.Context, contextDevMode, version == "dev")
 	return nil
 }
