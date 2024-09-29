@@ -19,3 +19,5 @@ go.work
 
 dist/
 tmp/
+
+inpxer.toml
