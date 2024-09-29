@@ -6,6 +6,7 @@ require (
 	github.com/blevesearch/bleve/v2 v2.4.2
 	github.com/chelnak/ysmrr v0.4.0
 	github.com/dgraph-io/badger/v3 v3.2103.5
+	github.com/essentialkaos/translit/v2 v2.1.3
 	github.com/go-chi/chi/v5 v5.1.0
 	github.com/pelletier/go-toml/v2 v2.2.3
 	github.com/stretchr/testify v1.9.0
@@ -51,7 +52,6 @@ require (
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.17.10 // indirect
-	github.com/kr/pretty v0.3.1 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect

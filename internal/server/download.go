@@ -15,6 +15,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/essentialkaos/translit/v2"
 	"github.com/go-chi/chi/v5"
 
 	"github.com/shemanaev/inpxer/internal/config"
@@ -222,6 +223,28 @@ func (h *DownloadHandler) getFileFromArchive(book *model.Book) ([]byte, error) {
 }
 
 func addFilenameToHeader(w http.ResponseWriter, title string, filename string) {
+	fileNameTranslit := formatFileNameTranslit(title, filename)
+	fileNameUtf8 := formatFileNameUtf8(title, filename)
+	w.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=%s; filename*=UTF-8''%s", fileNameTranslit, fileNameUtf8))
+}
+
+func formatFileNameUtf8(title string, filename string) string {
 	fileName := fmt.Sprintf("%s-%s", url.PathEscape(title), filename)
-	w.Header().Add("Content-Disposition", fmt.Sprintf("attachment; filename=\"%s\"", fileName))
+	return fileName
+}
+
+func formatFileNameTranslit(title string, filename string) string {
+	str := translit.ICAO(title)
+
+	replace := map[string]string{
+		" ":  "_",
+		"/":  "_",
+		"\\": "_",
+	}
+	for s, r := range replace {
+		str = strings.ReplaceAll(str, s, r)
+	}
+
+	fileName := fmt.Sprintf("%s-%s", str, filename)
+	return fileName
 }

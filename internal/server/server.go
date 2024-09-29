@@ -36,7 +36,7 @@ func Run(cfg *config.MyConfig, isDevMode bool) error {
 	r.Use(middleware.Logger)
 	r.Use(middleware.CleanPath)
 	r.Use(middleware.StripSlashes)
-	r.Use(middleware.Compress(5))
+	r.Use(middleware.Compress(5, "application/fb2"))
 
 	t, err := i18n.GetLocalizer(cfg.Language)
 	if err != nil {
