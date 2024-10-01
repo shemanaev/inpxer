@@ -18,8 +18,18 @@
                                     <strong itemprop="name">{{.CleanTitle}}</strong>
                                     <em title="{{.PublishedAt}}">({{.PubYear}})</em>
                                     {{if ne .Title .CleanTitle}}
-                                        <span class="tag">?</span>
-                                        <span class="full-title"><br>{{.Title}}</span>
+                                        <div class="dropdown is-hoverable">
+                                            <div class="dropdown-trigger">
+                                                <span class="tag">?</span>
+                                            </div>
+                                            <div class="dropdown-menu" role="menu">
+                                                <div class="dropdown-content">
+                                                    <div class="dropdown-item">
+                                                        <p>{{.Title}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     {{end}}
 
                                     {{if .Authors}}
@@ -55,7 +65,7 @@
                                 </div>
                             </div>
 
-                            <div class="column text-aligned-right">
+                            <div class="column text-aligned-right download-buttons">
                                 <div class="dropdown is-right">
                                     <div class="dropdown-trigger buttons has-addons">
                                         <a class="button is-primary is-outlined" aria-label="download" href="/download/{{.LibId}}">
@@ -103,37 +113,37 @@
             <div class="columns is-mobile is-centered">
                 <div class="column is-narrow">
                     {{if .Paginator.HasPrev}}
-                        <a class="button" href="/search?q={{.Query}}&field={{.Field}}" aria-label="first page">
+                        <a class="button is-medium" href="/search?q={{.Query}}&field={{.Field}}" aria-label="first page">
                             <i class="fa-solid fa-angles-left"></i>
                         </a>
-                        <a class="button"
+                        <a class="button is-medium"
                            href="/search?q={{.Query}}&field={{.Field}}{{if .Paginator.PrevPage}}&page={{.Paginator.PrevPage}}{{end}}"
                            aria-label="next page">
                             <i class="fa-solid fa-arrow-left-long"></i>
                         </a>
                     {{else}}
-                        <a class="button" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
+                        <a class="button is-medium" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
                             <i class="fa-solid fa-angles-left"></i>
                         </a>
-                        <a class="button" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
+                        <a class="button is-medium" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
                             <i class="fa-solid fa-arrow-left-long"></i>
                         </a>
                     {{end}}
 
                     {{if .Paginator.HasNext}}
-                        <a class="button" href="/search?q={{.Query}}&field={{.Field}}&page={{.Paginator.NextPage}}"
+                        <a class="button is-medium" href="/search?q={{.Query}}&field={{.Field}}&page={{.Paginator.NextPage}}"
                            aria-label="previous page">
                             <i class="fa-solid fa-arrow-right-long"></i>
                         </a>
-                        <a class="button" href="/search?q={{.Query}}&field={{.Field}}&page={{.Paginator.Last}}"
+                        <a class="button is-medium" href="/search?q={{.Query}}&field={{.Field}}&page={{.Paginator.Last}}"
                            aria-label="last page">
                             <i class="fa-solid fa-angles-right"></i>
                         </a>
                     {{else}}
-                        <a class="button" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
+                        <a class="button is-medium" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
                             <i class="fa-solid fa-arrow-right-long"></i>
                         </a>
-                        <a class="button" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
+                        <a class="button is-medium" href="#" onclick="return false;" tabindex="-1" aria-disabled="true" disabled>
                             <i class="fa-solid fa-angles-right"></i>
                         </a>
                     {{end}}
@@ -141,36 +151,5 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const dropdowns = document.querySelectorAll('.dropdown:not(.is-hoverable)');
 
-            if (dropdowns.length > 0) {
-                dropdowns.forEach(function(el) {
-                    el.addEventListener('click', function(e) {
-                        closeDropdowns();
-                        e.stopPropagation();
-                        el.classList.toggle('is-active');
-                    });
-                });
-
-                document.addEventListener('click', function(e) {
-                    closeDropdowns();
-                });
-            }
-
-            function closeDropdowns() {
-                dropdowns.forEach(function(el) {
-                    el.classList.remove('is-active');
-                });
-            }
-
-            document.addEventListener('keydown', function (event) {
-                let e = event || window.event;
-                if (e.key === 'Esc' || e.key === 'Escape') {
-                    closeDropdowns();
-                }
-            });
-        });
-    </script>
 {{end}}

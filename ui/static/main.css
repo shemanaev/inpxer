@@ -1,6 +1,6 @@
 /* Make comma separated lists easier */
 .comma-separated:after {
-    color: #222;
+    color: var(--bulma-body-color);
     content: ',';
 }
 
@@ -9,7 +9,7 @@
 }
 
 .book {
-    border-top: 1px solid #e6e6e6;
+    border-top: 2px solid var(--bulma-scheme-main-ter);
     padding: 10px 0;
 }
 
@@ -28,7 +28,7 @@
 }
 .book-details-row--field span {
     float: left;
-    background: #fff;
+    background: var(--bulma-body-background-color);
     position: relative;
     top: 2px;
     padding-right: 4px;
@@ -50,20 +50,16 @@ article.book .tag {
     font-weight: bold;
 }
 
-article.book .full-title {
-    display: none;
-}
-
-article.book .tag:hover + .full-title {
-    display: inline;
-}
 
 /* Bulma fixes */
-.buttons:not(:last-child) {
-    margin-bottom: -0.375rem;
+.download-buttons .buttons:not(:last-child) {
+    margin-bottom: 0.1rem;
 }
 
-.dropdown > .dropdown-menu {
-    margin-top: -0.375rem;
+.download-buttons .dropdown > .dropdown-menu {
     min-width: auto;
+}
+
+.old-like-margin {
+    margin-bottom: 1rem !important;
 }

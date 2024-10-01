@@ -5,7 +5,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>{{.Title}}</title>
+
         <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+        <link rel="icon" media="(prefers-color-scheme: dark)" href="/static/favicon-dark.svg" type="image/svg+xml">
+        <link rel="icon" media="(prefers-color-scheme: light)" href="/static/favicon.svg" type="image/svg+xml">
 
         <link rel="stylesheet" href="/static/vendor/bulma/css/bulma.min.css">
 
@@ -14,6 +17,7 @@
         <link rel="stylesheet" href="/static/vendor/fontawesome/css/solid.min.css">
 
         <link rel="stylesheet" href="/static/main.css">
+        <link rel="stylesheet" href="/static/theme.css">
     </head>
     <body>
     <section class="section">
@@ -21,6 +25,8 @@
             {{template "content" .}}
         </div>
     </section>
+    <script src="/static/main.js"></script>
+    <script src="/static/theme.js"></script>
     </body>
     </html>
 {{end}}

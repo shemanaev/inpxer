@@ -2,8 +2,11 @@
     <div class="columns is-mobile">
         <div class="column">
 
-            <div class="content">
-                <h3>{{.Title}}</h3>
+            <div class="content old-like-margin">
+                <div class="columns is-mobile is-gapless">
+                    <div class="column is-11"><h3 style="display: inline-block; max-width: 95%;">{{.Title}}</h3></div>
+                    <div class="column">{{template "_themes" .}}</div>
+                </div>
             </div>
 
             <form action="/search" method="get">
@@ -13,14 +16,14 @@
                                value="{{if ne .Query ""}}{{.Query}}{{end}}">
                     </div>
                     <div class="control">
-                        <button class="button is-info" type="submit">
+                        <button class="button is-info is-medium has-text-white" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
                 </div>
 
                 <div class="field">
-                    <div class="control">
+                    <div class="radios">
                         <label class="radio">
                             <input type="radio" name="field" value="_all"
                                    {{if or (eq .Field "_all") (eq .Field "")}}checked{{end}}>

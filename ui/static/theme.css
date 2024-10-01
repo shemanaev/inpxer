@@ -1,0 +1,27 @@
+
+.theme-switcher {
+    float: right;
+    margin-top: -0.5rem;
+}
+
+.theme-switcher button {
+    display: inline-block;
+    height: var(--bulma-control-height);
+    width: var(--bulma-control-height);
+}
+
+.theme-icon-auto {
+    color: var(--bulma-primary);
+}
+
+.theme-icon-light {
+    color: rgb(255, 183, 15);
+}
+
+.theme-icon-dark {
+    color: rgb(129, 86, 245);
+}
+
+.theme-button-hidden {
+    display: none !important;
+}
