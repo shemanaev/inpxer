@@ -884,3 +884,6 @@ msgstr "Учебники и пособия для среднего и специ
 
 msgid "sci_theories"
 msgstr "Альтернативные науки и научные теории"
+
+msgid "comics"
+msgstr "Комиксы"

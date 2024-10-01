@@ -857,3 +857,6 @@ msgstr "Accidental Travel"
 
 msgid "russian_fantasy"
 msgstr "Slavic Fantasy"
+
+msgid "comics"
+msgstr "Comics"
