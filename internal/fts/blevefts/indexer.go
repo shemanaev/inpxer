@@ -9,6 +9,7 @@ import (
 	"github.com/blevesearch/bleve/v2/index/scorch"
 	"github.com/blevesearch/bleve/v2/index/upsidedown/store/boltdb"
 	"github.com/blevesearch/bleve/v2/mapping"
+	blevequery "github.com/blevesearch/bleve/v2/search/query"
 
 	"github.com/shemanaev/inpxer/internal/fts"
 )
@@ -78,6 +79,7 @@ func (i *Indexer) AddBooks(books []*fts.Book, partial bool) error {
 func (i *Indexer) SearchByField(field, s string, page, pageSize int) (*fts.SearchResult, error) {
 	query := bleve.NewMatchQuery(s)
 	query.SetField(field)
+	query.SetOperator(blevequery.MatchQueryOperatorAnd)
 	search := bleve.NewSearchRequestOptions(query, pageSize, page*pageSize, false)
 
 	switch field {
@@ -87,6 +89,8 @@ func (i *Indexer) SearchByField(field, s string, page, pageSize int) (*fts.Searc
 		search.SortBy([]string{"-_score", "-PubDate"})
 	case "Series":
 		search.SortBy([]string{"-_score", "Series", "-SeriesNo"})
+	case "_all":
+		search.SortBy([]string{"-_score", "-PubDate", "-SeriesNo"})
 	}
 
 	searchResults, err := i.index.Search(search)

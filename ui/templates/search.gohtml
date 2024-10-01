@@ -16,7 +16,7 @@
                             <div class="column is-10">
                                 <div class="content is-max-desktop">
                                     <strong itemprop="name">{{.CleanTitle}}</strong>
-                                    <em>({{.PubYear}})</em>
+                                    <em title="{{.PublishedAt}}">({{.PubYear}})</em>
                                     {{if ne .Title .CleanTitle}}
                                         <span class="tag">?</span>
                                         <span class="full-title"><br>{{.Title}}</span>

@@ -86,6 +86,10 @@ func (b *Book) PubYear() string {
 	return strconv.Itoa(b.PubDate.Year())
 }
 
+func (b *Book) PublishedAt() string {
+	return b.PubDate.Format("2006-01-02")
+}
+
 func (a Author) String() string {
 	var name string
 	if a.FirstName == "" && a.MiddleName == "" {
