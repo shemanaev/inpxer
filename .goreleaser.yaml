@@ -3,7 +3,7 @@ before:
     - go mod tidy
 
 release:
-  draft: true
+  draft: false
   replace_existing_draft: true
   prerelease: auto
 
