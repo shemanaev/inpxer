@@ -39,7 +39,7 @@ func Run(cfg *config.MyConfig, filename string, keepDeleted, partial bool) error
 		}
 	}
 
-	idx, err := db.Create(cfg.IndexPath, cfg.Language)
+	idx, err := db.Create(cfg.IndexPath, cfg.Language, cfg.Storage)
 	if err != nil {
 		log.Printf("Error opening or creating index: %s", cfg.IndexPath)
 		return cli.Exit(err.Error(), 1)

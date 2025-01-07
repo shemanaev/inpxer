@@ -36,7 +36,7 @@ func NewDownloadHandler(cfg *config.MyConfig) *DownloadHandler {
 func (h *DownloadHandler) Download(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 
-	index, err := db.Open(h.cfg.IndexPath)
+	index, err := db.Open(h.cfg.IndexPath, h.cfg.Storage)
 	if err != nil {
 		log.Printf("Error opening index: %v", err)
 		internalServerError(w)
@@ -95,7 +95,7 @@ func (h *DownloadHandler) DownloadConverted(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
-	index, err := db.Open(h.cfg.IndexPath)
+	index, err := db.Open(h.cfg.IndexPath, h.cfg.Storage)
 	if err != nil {
 		log.Printf("Error opening index: %v", err)
 		internalServerError(w)

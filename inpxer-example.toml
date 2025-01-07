@@ -17,6 +17,8 @@ library_path = "/data/library"
 listen = ":8080"
 # fully qualified url to server. required for OPDS (OpenSearch)
 full_url = "http://localhost:8080"
+# storage backend. possible values: bolt, badger. default: badger. might be usefult for 32 bit systems
+# storage = "bolt"
 
 # format converters. can be as many as you want
 #[[converters]]

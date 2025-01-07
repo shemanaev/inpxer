@@ -48,7 +48,7 @@ func (h *OpdsHandler) OpenSearchDescription(w http.ResponseWriter, r *http.Reque
 }
 
 func (h *OpdsHandler) Root(w http.ResponseWriter, r *http.Request) {
-	index, err := db.Open(h.cfg.IndexPath)
+	index, err := db.Open(h.cfg.IndexPath, h.cfg.Storage)
 	if err != nil {
 		log.Printf("Error opening index: %v", err)
 		internalServerError(w)
@@ -81,7 +81,7 @@ func (h *OpdsHandler) Search(w http.ResponseWriter, r *http.Request) {
 		page = 0
 	}
 
-	index, err := db.Open(h.cfg.IndexPath)
+	index, err := db.Open(h.cfg.IndexPath, h.cfg.Storage)
 	if err != nil {
 		log.Printf("Error opening index: %v", err)
 		internalServerError(w)

@@ -11,6 +11,7 @@ import (
 const configFilename = "inpxer.toml"
 
 type MyConfig struct {
+	Storage          string       `toml:"storage"`
 	Language         string       `toml:"language"`
 	Title            string       `toml:"title"`
 	AuthorNameFormat string       `toml:"author_name_format"`

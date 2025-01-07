@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/shemanaev/inpxer/internal/db/badgerstore"
+	"github.com/shemanaev/inpxer/internal/db/boltstore"
 	"github.com/shemanaev/inpxer/internal/db/storer"
 	"github.com/shemanaev/inpxer/internal/fts"
 	"github.com/shemanaev/inpxer/internal/fts/blevefts"
@@ -12,8 +13,9 @@ import (
 )
 
 const (
-	blevePath = "bleve"
-	boltPath  = "badger"
+	blevePath  = "bleve"
+	badgerPath = "badger"
+	boltPath   = "bolt"
 )
 
 type SearchResult struct {
@@ -26,13 +28,13 @@ type Store struct {
 	db  storer.BookStorer
 }
 
-func Open(path string) (*Store, error) {
+func Open(path string, storage string) (*Store, error) {
 	indexer, err := blevefts.Open(filepath.Join(path, blevePath))
 	if err != nil {
 		return nil, err
 	}
 
-	data, err := badgerstore.Open(filepath.Join(path, boltPath))
+	data, err := openStorage(storage, path)
 	if err != nil {
 		return nil, err
 	}
@@ -43,13 +45,13 @@ func Open(path string) (*Store, error) {
 	}, nil
 }
 
-func Create(path, language string) (*Store, error) {
+func Create(path, language string, storage string) (*Store, error) {
 	indexer, err := blevefts.Create(filepath.Join(path, blevePath), language)
 	if err != nil {
 		return nil, err
 	}
 
-	data, err := badgerstore.Open(filepath.Join(path, boltPath))
+	data, err := openStorage(storage, path)
 	if err != nil {
 		return nil, err
 	}
@@ -58,6 +60,21 @@ func Create(path, language string) (*Store, error) {
 		fts: indexer,
 		db:  data,
 	}, nil
+}
+
+func openStorage(storage string, path string) (storer.BookStorer, error) {
+	var res storer.BookStorer
+	var err error
+
+	switch strings.ToLower(storage) {
+	case "bolt":
+		res, err = boltstore.Open(filepath.Join(path, boltPath))
+	case "badger":
+	default:
+		res, err = badgerstore.Open(filepath.Join(path, badgerPath))
+	}
+
+	return res, err
 }
 
 func (s *Store) Close() error {
