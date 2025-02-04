@@ -374,7 +374,7 @@ func (p *Parser) getFileByName(name string) (io.ReadCloser, error) {
 // Read line from reader and returns it trimmed.
 func readCleanString(r *bufio.Reader) (string, error) {
 	s, err := r.ReadString('\n')
-	if err != nil {
+	if err != nil && err != io.EOF {
 		return "", err
 	}
 

@@ -90,6 +90,18 @@ func (b *Book) PublishedAt() string {
 	return b.PubDate.Format("2006-01-02")
 }
 
+func (f *File) IsArchived() bool {
+	return f.Folder == "" || strings.HasSuffix(f.Folder, ".zip")
+}
+
+func (f *File) ArchivePath() string {
+	if strings.HasSuffix(f.Folder, ".zip") {
+		return f.Folder
+	}
+
+	return fmt.Sprintf("%s.zip", f.Archive)
+}
+
 func (a Author) String() string {
 	var name string
 	if a.FirstName == "" && a.MiddleName == "" {

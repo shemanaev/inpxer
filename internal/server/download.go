@@ -51,7 +51,7 @@ func (h *DownloadHandler) Download(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if book.File.Folder == "" {
+	if book.File.IsArchived() {
 		data, err := h.getFileFromArchive(book)
 		if err != nil {
 			notFound(w, id)
@@ -117,7 +117,7 @@ func (h *DownloadHandler) DownloadConverted(w http.ResponseWriter, r *http.Reque
 	}
 
 	var filename string
-	if book.File.Folder == "" {
+	if book.File.IsArchived() {
 		data, err := h.getFileFromArchive(book)
 		if err != nil {
 			notFound(w, id)
@@ -189,7 +189,7 @@ func (h *DownloadHandler) getDirectFilePath(book *model.Book) (string, error) {
 }
 
 func (h *DownloadHandler) getFileFromArchive(book *model.Book) ([]byte, error) {
-	archivePath := filepath.Join(h.cfg.LibraryPath, book.File.Archive+".zip")
+	archivePath := filepath.Join(h.cfg.LibraryPath, book.File.ArchivePath())
 	zf, err := zip.OpenReader(archivePath)
 	if err != nil {
 		log.Printf("Can't open archive `%s` (id: %s) not found: %v", archivePath, book.LibId, err)
