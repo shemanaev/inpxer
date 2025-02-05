@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"math"
@@ -40,6 +41,7 @@ type resultStats struct {
 type arguments struct {
 	T                *spreak.Localizer
 	Converters       []*config.Converter
+	TabTitle         string
 	Title            string
 	AuthorNameFormat string
 	Query            string
@@ -70,8 +72,9 @@ func NewWebHandler(cfg *config.MyConfig, localizer *spreak.Localizer) *WebHandle
 
 func (h *WebHandler) Home(w http.ResponseWriter, r *http.Request) {
 	args := arguments{
-		T:     h.localizer,
-		Title: h.cfg.Title,
+		T:        h.localizer,
+		TabTitle: h.cfg.Title,
+		Title:    h.cfg.Title,
 	}
 	if err := h.indexTpl.Execute(w, args); err != nil {
 		internalServerError(w)
@@ -134,6 +137,7 @@ func (h *WebHandler) Search(w http.ResponseWriter, r *http.Request) {
 	args := arguments{
 		T:                h.localizer,
 		Converters:       h.cfg.Converters,
+		TabTitle:         fmt.Sprintf("%s - %s", q, h.cfg.Title),
 		Title:            h.cfg.Title,
 		AuthorNameFormat: h.cfg.AuthorNameFormat,
 		Query:            q,
