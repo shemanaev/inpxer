@@ -1,3 +1,7 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+
+version: 2
+
 before:
   hooks:
     - go mod tidy
@@ -19,22 +23,23 @@ builds:
     goarch:
       - amd64
       - arm64
+      - '386'
     ignore:
       - goos: windows
         goarch: arm64
 
 archives:
   -
-    format: "tar.gz"
+    formats: [ 'tar.gz' ]
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     format_overrides:
       - goos: windows
-        format: zip
+        formats: [ 'zip' ]
 
 checksum:
   name_template: 'checksums.txt'
 snapshot:
-  name_template: "{{ incpatch .Version }}-next"
+  version_template: "{{ incpatch .Version }}-next"
 changelog:
   sort: asc
   filters:
